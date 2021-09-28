@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 
-const { i18n } = require("./next-i18next.config");
-const path = require("path");
-require("dotenv").config();
+const { i18n } = require('./next-i18next.config');
+const path = require('path');
+require('dotenv').config();
 
 module.exports = {
   reactStrictMode: true,
@@ -11,6 +11,7 @@ module.exports = {
   },
   i18n,
   env: {
+    API_BASE_URL: process.env.API_BASE_URL,
     SSO_AUTHORITY: process.env.SSO_AUTHORITY,
     SSO_API_URL: process.env.SSO_API_URL,
     SSO_CLIENT_ID: process.env.SSO_CLIENT_ID,
@@ -22,13 +23,15 @@ module.exports = {
   webpack(config, options) {
     config.resolve.alias = {
       ...config.resolve.alias,
-      components: path.join(__dirname, "./src/components"),
-      utility: path.join(__dirname, "./src/utility"),
-      services: path.join(__dirname, "./src/services"),
-      types: path.join(__dirname, "./src/types"),
-      hooks: path.join(__dirname, "./src/hooks"),
-      store: path.join(__dirname, "./src/store"),
-      styles: path.join(__dirname, "./styles"),
+      components: path.join(__dirname, './components'),
+      utility: path.join(__dirname, './src/utility'),
+      services: path.join(__dirname, './src/services'),
+      types: path.join(__dirname, './src/types'),
+      hooks: path.join(__dirname, './src/hooks'),
+      store: path.join(__dirname, './src/store'),
+      styles: path.join(__dirname, './styles'),
+      images: path.join(__dirname, './public/images'),
+      public: path.join(__dirname, './public'),
     };
     return config;
   },

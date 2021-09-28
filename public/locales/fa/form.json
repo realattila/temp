@@ -1,0 +1,40 @@
+{
+  "textInput": {
+    "rules": {
+      "required": "فیلد {{name}} الزامی است",
+      "minLength": "حداقل {{min}} کاراکتر وارد کنید"
+    }
+  },
+  "NumberInput": {
+    "rules": {
+      "required": "فیلد {{name}} الزامی است"
+    }
+  },
+  "TextAreaInput": {
+    "rules": {
+      "required": "فیلد {{name}} الزامی است",
+      "minLength": "حداقل {{min}} کاراکتر وارد کنید"
+    }
+  },
+  "passwordInput": {
+    "rules": {
+      "required": "فیلد {{name}} الزامی است"
+    }
+  },
+  "checkboxInput": {
+    "rules": {
+      "required": "فیلد {{name}} الزامی است"
+    }
+  },
+  "PhoneNumberInput": {
+    "rules": {
+      "required": "فیلد {{name}} الزامی است",
+      "pattern": "{{name}} صحیح وارد کنید (09112345678)"
+    }
+  },
+  "selectInput": {
+    "rules": {
+      "required": "فیلد {{name}} الزامی است"
+    }
+  }
+}

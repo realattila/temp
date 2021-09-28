@@ -1,1 +1,27 @@
 // Here you can add other styles
+[dir='rtl'] .sidebar-nav .nav-group-items .nav-link {
+  padding-right: 2rem;
+}
+
+.form-select {
+  background-position: left 0.75rem center;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  background-position: left calc(0.375em + 0.1875rem) center;
+}
+.was-validated textarea.form-control:invalid,
+textarea.form-control.is-invalid {
+  background-position: top calc(0.375em + 0.1875rem) left calc(0.375em + 0.1875rem);
+}
+.was-validated .form-select:invalid:not([multiple]):not([size]),
+.was-validated .form-select:invalid:not([multiple])[size='1'],
+.form-select.is-invalid:not([multiple]):not([size]),
+.form-select.is-invalid:not([multiple])[size='1'] {
+  background-position: left 0.75rem center, center left 2.25rem;
+}
+
+.btn-loading.is-loading .btn-loading-spinner {
+  margin-left: 0.5rem;
+}

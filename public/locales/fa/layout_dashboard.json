@@ -1,0 +1,12 @@
+{
+  "sidebar": {
+    "items": {
+      "notification": {
+        "head": "اعلانات",
+        "sendSms": "ارسال پیامک",
+        "providersSetting": "تنظیمات سرویس دهنده",
+        "showSMSs": "نمایش پیامک ها"
+      }
+    }
+  }
+}

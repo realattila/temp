@@ -1,0 +1,10 @@
+.dashboard {
+  &__title {
+    background-color: rgba($white, 0.5);
+    backdrop-filter: blur(5px);
+    width: auto;
+    max-width: max-content;
+    padding: 0.625rem 1rem;
+    margin: 1rem 0;
+  }
+}

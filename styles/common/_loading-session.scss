@@ -1,0 +1,18 @@
+.loading-session {
+  height: 100%;
+  width: 100%;
+  background-color: var(--white-color);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  &__loading {
+    display: flex;
+    align-items: center;
+  }
+  &__error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
