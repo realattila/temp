@@ -14,3 +14,19 @@ export const sendSmsExperimentalNotificationAPI = (data: any) =>
     method: 'POST',
     data,
   });
+
+export const removeProvderNotificationAPI = (data: FormData) =>
+  API({
+    url: 'api/Message/DeleteSmsProviders',
+    withAuth: true,
+    method: 'DELETE',
+    data,
+  });
+
+export const addProvderNotificationAPI = (data: FormData) =>
+  API({
+    url: '/api/Message/SaveSmsProviders',
+    withAuth: true,
+    method: 'POST',
+    data,
+  });

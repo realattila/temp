@@ -1,0 +1,80 @@
+{
+  "title": "تنظیمات سرویس دهنده ها",
+  "table": {
+    "head": {
+      "items": {
+        "id": "id",
+        "providerName": "نام سرویس دهنده",
+        "tokenUrl": "tokenUrl",
+        "postUrl": "postUrl",
+        "fromNumber": "از شماره",
+        "toTestNumber": "شماره آزمایشی",
+        "ports": "port",
+        "isActive": "وضعیت",
+        "actions": "عملیات"
+      }
+    },
+    "body": {
+      "items": {
+        "isActive": {
+          "true": "فعال",
+          "false": "غیرفعال"
+        }
+      }
+    },
+    "removeProviderModal": {
+      "title": "حذف سرویس دهنده",
+      "content": "آیا مطمئن به حذف سرویس دهنده {{name}} هستید؟",
+      "submit": "بله",
+      "cancel": "خیر"
+    }
+  },
+  "addNew": {
+    "title": "افزودن سرویس دهنده جدید"
+  },
+  "edit": {},
+  "addEditModal": {
+    "titles": {
+      "add": "افزودن سرویس دهنده جدید",
+      "edit": "ویرایش سرویس دهنده {{name}}"
+    },
+    "form": {
+      "providerName": {
+        "label": "نام سرویس دهنده",
+        "placeholder": "نام سرویس دهنده"
+      },
+      "tokenUrl": {
+        "label": "tokenUrl",
+        "placeholder": "tokenUrl"
+      },
+      "postUrl": {
+        "label": "postUrl",
+        "placeholder": "postUrl"
+      },
+      "fromNumber": {
+        "label": "از شماره",
+        "placeholder": "از شماره"
+      },
+      "toTestNumber": {
+        "label": "شماره آزمایشی",
+        "placeholder": "شماره آزمایشی",
+        "popOver": "هنگامی که شماره آزمایشی اضافه کنید تمامی پیامک ها به شماره آزمایشی فرستاده می شود"
+      },
+      "ports": {
+        "label": "port",
+        "placeholder": "port"
+      },
+      "isActive": {
+        "label": "وضعیت"
+      },
+      "submit": {
+        "add": "ثبت اطلاعات",
+        "edit": "ویرایش اطلاعات"
+      }
+    }
+  },
+  "seo": {
+    "title": "تنظیمات سرویس دهنده ها - اعلانات",
+    "description": "صفحه تنظیمات سرویس دهنده ها"
+  }
+}

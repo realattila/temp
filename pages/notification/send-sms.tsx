@@ -52,7 +52,7 @@ const SendSmsNotification: NextPage = () => {
   return (
     <>
       <DashboardLayout>
-        <h1 className='fs-2  dashboard__title mb-2'>{t('title')}</h1>
+        <h1 className='  dashboard__title'>{t('title')}</h1>
         <CContainer>
           <CRow className='justify-content-center'>
             <CCol xs={12} sm={12} md={12} lg={10} xl={8} xxl={6}>
