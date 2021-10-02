@@ -103,7 +103,7 @@ const ShowSmsDashboard: NextPage = () => {
   return (
     <>
       <DashboardLayout>
-        <h1 className='  dashboard__title'>{t('title')}</h1>
+        <h1 className='dashboard__title'>{t('title')}</h1>
         <CContainer fluid className='show-smss'>
           <CRow>
             <CCol xs={12} className='show-smss__filter__wapper'>

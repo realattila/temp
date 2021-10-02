@@ -38,7 +38,7 @@ const SendSmsNotification: NextPage = () => {
   let providersList: Array<any> = [];
 
   if (!!notificationProvidersData) {
-    notificationProvidersData.map((item: any) => {
+    (notificationProvidersData || []).map((item: any) => {
       if (item.isActive) {
         providersList.push({
           value: item.providerName,

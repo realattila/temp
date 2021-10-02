@@ -62,7 +62,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
             disabled={disabled}
           >
             <option value='-1'>{showLabel ? '' : label}</option>
-            {list.map((item) => (
+            {(list || []).map((item) => (
               <option key={randomIntNumber()} value={item.value}>
                 {item.label || item.value}
               </option>

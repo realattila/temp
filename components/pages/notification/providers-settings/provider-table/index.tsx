@@ -63,7 +63,7 @@ const ProviderTableNotification: React.FC<ProviderTableNotificationProps> = ({ d
               </CTableRow>
             </CTableHead>
             <CTableBody>
-              {data.map((item) => {
+              {(data || []).map((item) => {
                 return (
                   <CTableRow key={randomIntNumber()}>
                     <CTableDataCell>{item?.id}</CTableDataCell>

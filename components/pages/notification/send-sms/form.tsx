@@ -47,7 +47,7 @@ const SendSmsNotificationForm: React.FC<SendSmsNotificationFormProps> = ({ provi
 
     useEffect(() => {
       if (!!providerNameValue) {
-        providersList.map((item: any) => {
+        (providersList || []).map((item: any) => {
           if (item.value === providerNameValue) {
             if (!!item.toTestNumber) {
               setDisable(true);

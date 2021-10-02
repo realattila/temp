@@ -23,7 +23,7 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
   let providersList: Array<any> = [];
 
   if (!!providers) {
-    providers.map((item: any) => {
+    (providers || []).map((item: any) => {
       providersList.push({
         value: item.providerName,
         label: item.providerName,
