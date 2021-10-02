@@ -18,9 +18,7 @@ export type NavItem = {
   items?: NavItem[];
 };
 
-const nav = (): NavItem[] => {
-  const { t } = useTranslation('layout_dashboard');
-
+const nav = (t: any): NavItem[] => {
   return [
     {
       component: CNavGroup,

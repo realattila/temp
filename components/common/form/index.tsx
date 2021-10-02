@@ -45,12 +45,3 @@ Form.defaultProps = {
 };
 
 export default Form;
-
-export const withForm = (WappedComponent: React.FC, useFormProps?: UseFormProps) => (props: any) => {
-  const methods = useForm(useFormProps);
-  return (
-    <FormProvider {...methods}>
-      <WappedComponent {...props} />
-    </FormProvider>
-  );
-};

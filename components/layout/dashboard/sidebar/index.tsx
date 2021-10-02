@@ -14,10 +14,12 @@ import images from 'images/index';
 // sidebar nav config
 import navigation from './nav';
 import { showAsideDashboard } from 'store/dashboard';
+import { useTranslation } from 'react-i18next';
 
 const AppSidebar = () => {
   const toggleAside = useAppSelector((state) => state.dashboard.toggleAside);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('layout_dashboard');
 
   useEffect(() => {
     const breakPoint = String(window.getComputedStyle(document.body, ':before').content);
@@ -33,7 +35,7 @@ const AppSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
-          <AppSidebarNav items={navigation()} />
+          <AppSidebarNav items={navigation(t)} />
         </SimpleBar>
       </CSidebarNav>
       {/* <CSidebarToggler className='d-none d-lg-flex' /> */}
