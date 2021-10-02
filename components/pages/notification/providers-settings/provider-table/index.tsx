@@ -39,15 +39,15 @@ const ProviderTableNotification: React.FC<ProviderTableNotificationProps> = ({ d
   const handleCloseEditProviderModal = () => setEditProviderModal(null);
 
   const headTable = [
-    { dataField: 'id', text: t('table.head.items.id') },
-    { dataField: 'providerName', text: t('table.head.items.providerName') },
-    { dataField: 'tokenUrl', text: t('table.head.items.tokenUrl') },
-    { dataField: 'postUrl', text: t('table.head.items.postUrl') },
-    { dataField: 'fromNumber', text: t('table.head.items.fromNumber') },
-    { dataField: 'toTestNumber', text: t('table.head.items.toTestNumber') },
-    { dataField: 'ports', text: t('table.head.items.ports') },
-    { dataField: 'isActive', text: t('table.head.items.isActive') },
-    { dataField: 'actions', text: t('table.head.items.actions') },
+    { text: t('table.head.items.id') },
+    { text: t('table.head.items.providerName') },
+    { text: t('table.head.items.tokenUrl') },
+    { text: t('table.head.items.postUrl') },
+    { text: t('table.head.items.fromNumber') },
+    { text: t('table.head.items.toTestNumber') },
+    { text: t('table.head.items.ports') },
+    { text: t('table.head.items.isActive') },
+    { text: t('table.head.items.actions') },
   ];
 
   return (

@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { CFormFeedback, CFormInput, CFormLabel } from '@coreui/react-pro';
 
 export interface TextInputProps {
-  label: string;
+  label?: string;
   name: string;
   defaultValue?: string | number;
   rules?: RegisterOptions;
@@ -15,6 +15,8 @@ export interface TextInputProps {
   showLabel?: boolean;
   disabled?: boolean;
   className?: string;
+  min?: number;
+  max?: number;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -29,6 +31,8 @@ const TextInput: React.FC<TextInputProps> = ({
   showLabel = false,
   disabled = false,
   className = '',
+  min,
+  max,
 }) => {
   const { t } = useTranslation('form');
 

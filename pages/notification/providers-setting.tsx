@@ -38,7 +38,7 @@ const ProvidersSettingDashboard = () => {
   return (
     <>
       <DashboardLayout>
-        <h2 className='dashboard__title'>{t('title')}</h2>
+        <h1 className='dashboard__title'>{t('title')}</h1>
         <CContainer fluid>
           <CRow>
             <LoadingSession

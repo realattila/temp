@@ -1,0 +1,75 @@
+{
+  "title": "نمایش پیامک ها",
+  "filters": {
+    "title": "فیلتر نتایج",
+    "submit": "اعمال",
+    "fromDate": "از تاریخ",
+    "toDate": "تا تاریخ",
+    "createDate": {
+      "label": "انتخاب تاریخ"
+    },
+    "showDateInFilter": {
+      "label": "فیلتر تاریخ"
+    },
+    "providerName": "نام سرویس دهنده",
+    "notificationType": {
+      "label": "زیر سیستم",
+      "items": {
+        "sms": "سامان شهر",
+        "smsDorsa": "فرایند های درسا",
+        "smsSecurity": "ثبت نام کاربر در درسا"
+      }
+    },
+    "statusType": {
+      "label": "وضعیت",
+      "items": {
+        "done": "موفق",
+        "pending": "در صف ارسال",
+        "hasError": "خطا در ارسال"
+      }
+    },
+    "recipient": {
+      "label": "شماره گیرنده",
+      "placeholder": "09123456789"
+    }
+  },
+  "table": {
+    "head": {
+      "items": {
+        "id": "ردیف",
+        "requesterName": "نام درخواست دهنده",
+        "recipient": "شماره گیرنده",
+        "status": "وضعیت",
+        "createDateFa": "تاریخ ایجاد",
+        "providerName": "نام سرویس دهنده",
+        "activeSMSProvider": "سرویس دهنده فعال پیامک",
+        "body": "متن پیام",
+        "notificationType": "نوع نوتیفیکیشن",
+        "details": "جزئیات"
+      }
+    },
+    "body": {
+      "statusType": {
+        "items": {
+          "done": "موفق",
+          "pending": "در صف ارسال",
+          "hasError": "خطا در ارسال",
+          "unknow": "ناشناخته"
+        }
+      }
+    },
+    "logDetailModal": {
+      "title": "جزئیات پیامک"
+    },
+    "pagination": {
+      "content": "صفحه {{current}} از {{total}}",
+      "submit": "برو",
+      "next": "بعدی",
+      "previous": "قبلی"
+    }
+  },
+  "seo": {
+    "title": "صفحه پیامک ها ",
+    "description": "صفحه پیامک ها "
+  }
+}

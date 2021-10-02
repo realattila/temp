@@ -36,7 +36,7 @@ const AppSidebar = () => {
           <AppSidebarNav items={navigation()} />
         </SimpleBar>
       </CSidebarNav>
-      <CSidebarToggler className='d-none d-lg-flex' />
+      {/* <CSidebarToggler className='d-none d-lg-flex' /> */}
     </CSidebar>
   );
 };

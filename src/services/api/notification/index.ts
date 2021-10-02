@@ -30,3 +30,6 @@ export const addProvderNotificationAPI = (data: FormData) =>
     method: 'POST',
     data,
   });
+
+export const getLogSmssNotificationAPI = (data: any) =>
+  API({ url: '/api/Message/Get', method: 'POST', withAuth: true, data });

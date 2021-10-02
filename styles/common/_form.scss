@@ -1,0 +1,11 @@
+.date_picker_input {
+  &__wapper {
+    & input {
+      height: 2.375rem;
+      width: 100%;
+    }
+    & label {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
