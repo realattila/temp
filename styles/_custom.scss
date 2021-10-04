@@ -29,3 +29,22 @@ textarea.form-control.is-invalid {
 .modal-header .btn-close {
   margin: -0.5rem auto -0.5rem -0.5rem;
 }
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .accordion-item {
+    .accordion-button {
+      box-shadow: none;
+      &:focus {
+        border: none;
+        box-shadow: none;
+      }
+      &:not(.collapsed) {
+        background-color: var(--cui-accordion-button-bg, #fff);
+        color: var(--cui-accordion-button-color, rgba(44, 56, 74, 0.95));
+      }
+    }
+  }
+}

@@ -9,3 +9,17 @@
     }
   }
 }
+
+.date-range-picker-input {
+  & > div {
+    height: 0;
+  }
+  & input {
+    position: absolute;
+    visibility: hidden;
+    height: 0;
+  }
+  &__input {
+    cursor: pointer;
+  }
+}

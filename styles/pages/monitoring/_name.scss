@@ -1,0 +1,51 @@
+.monitoring-name {
+  &__tabs {
+    margin-bottom: 24px;
+    &__item {
+      color: var(--cui-secondary);
+      background-color: var(--cui-white);
+      padding: 15px;
+      cursor: pointer;
+      text-align: center;
+      &__active {
+        color: var(--cui-dark);
+        background-color: transparent;
+      }
+    }
+  }
+  &__header {
+    border-bottom: 1px solid var(--cui-secondary);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    &__box {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    &__advanced-search {
+      &__item {
+        margin-bottom: 8px;
+
+        @include res(xl) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  &__results {
+    &__item {
+      position: relative;
+      &__status {
+        position: absolute;
+        right: 20px;
+        top: 0;
+        transform: translate(0%, -50%);
+        display: flex;
+      }
+    }
+  }
+}

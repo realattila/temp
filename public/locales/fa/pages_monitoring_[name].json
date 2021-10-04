@@ -1,0 +1,30 @@
+{
+  "tabs": {
+    "auditLogs": "Audit Logs",
+    "oprationLogs": "Opration Logs"
+  },
+  "auditLogs": {
+    "header": {
+      "search": {
+        "placeholder": "جستجو ..."
+      },
+      "advancedSearch": {
+        "title": "جستجوی پیشرفته",
+        "rangeDate": {
+          "label": "انتخاب بازه زمانی"
+        },
+        "tabelName": {
+          "label": "فیلتر براساس نام جدول"
+        },
+        "status": {
+          "label": "فیلتر براساس وضعیت"
+        },
+        "submit": "جستجو"
+      }
+    }
+  },
+  "seo": {
+    "title": "صفحه دیده بان {{name}}",
+    "description": "صفحه دیده بان {{name}}"
+  }
+}

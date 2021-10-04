@@ -33,11 +33,10 @@ export const AppSidebarNav: FC<AppSidebarNavProps> = ({ items }) => {
     const { component, name, badge, icon, to, ...rest } = item;
     const Component = component;
     return (
-      <Component key={index} {...rest}>
+      <Component key={index} {...rest} className='d-flex align-items-center flex-wrap '>
         <Link href={to}>
           <CNavLink className={router.pathname === to ? 'active' : ''} href={to}>
-            {' '}
-            {navLink(name, icon, badge)}{' '}
+            {navLink(name, icon, badge)}
           </CNavLink>
         </Link>
       </Component>
