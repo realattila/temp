@@ -132,7 +132,7 @@ const repeatReuest = async (_config: any) => {
       return res;
     })
     .catch((e) => {
-      AuthServiceInstance.logout();
+      AuthServiceInstance.login();
       return e;
     });
 };
