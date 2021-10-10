@@ -7,14 +7,13 @@ $enable-rtl: true; /* stylelint-disable-line scss/dollar-variable-default */
 // Import styles
 @import '@coreui/coreui-pro/scss/coreui';
 @import '@coreui/coreui-pro/scss/themes/dark';
-
+@import 'mixin';
 @import 'layout';
 
 // If you want to add custom CSS you can put it here.
 @import 'custom';
 
 @import './layout/dashboard';
-@import 'mixin';
 @import 'base';
 
 @import './common/loading-session';

@@ -67,7 +67,6 @@ const RemoveProviderModalNotification: React.FC<RemoveProviderModalNotificationP
           disabled={apiLoading}
           loading={apiLoading}
           className='px-5'
-          color='success'
           variant='outline'
           onClick={() => !apiLoading && onHide()}
         >

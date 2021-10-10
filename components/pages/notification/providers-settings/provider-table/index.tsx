@@ -82,7 +82,7 @@ const ProviderTableNotification: React.FC<ProviderTableNotificationProps> = ({ d
                           <i className='cil-trash'></i>
                         </CButton>
 
-                        <CButton variant='outline' color='success' onClick={() => handleOpenEditProviderModal(item)}>
+                        <CButton variant='outline' onClick={() => handleOpenEditProviderModal(item)}>
                           <i className='cil-color-border'></i>
                         </CButton>
                       </div>

@@ -18,8 +18,8 @@ const AddProviderNotification: React.FC<AddProviderNotificationProps> = ({ getPr
         <div className='d-flex'>
           <CButton className='ms-auto' onClick={() => handleToggleModal(true)}>
             <div className='d-flex align-items-center gap-1' color='primary'>
-              <span>{t('addNew.title')}</span>
-              <i className='cil-plus'></i>
+              <span className='hidden--xs'>{t('addNew.title')}</span>
+              <i className='cil-plus '></i>
             </div>
           </CButton>
         </div>

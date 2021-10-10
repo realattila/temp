@@ -55,7 +55,7 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC = () => {
         </CCol>
         <CCol xs={12} sm={6} md={6} lg={12} xl={2} xxl={3} className='d-flex'>
           <div className='monitoring-name__header__advanced-search__item d-flex ms-auto'>
-            <MyButton color='success'>{t('auditLogs.header.advancedSearch.submit')}</MyButton>
+            <MyButton>{t('auditLogs.header.advancedSearch.submit')}</MyButton>
           </div>
         </CCol>
       </CRow>

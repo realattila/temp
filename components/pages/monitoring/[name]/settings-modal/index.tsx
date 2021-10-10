@@ -88,7 +88,7 @@ const SettingsModalMonitoring: React.FC<SettingsModalMonitoringProps> = ({ show,
             <MyButton color='dark' variant='ghost'>
               {t('settingsModal.action.cancel')}
             </MyButton>
-            <MyButton color='success'>{t('settingsModal.action.submit')}</MyButton>
+            <MyButton>{t('settingsModal.action.submit')}</MyButton>
           </div>
         </div>
       </CModalFooter>

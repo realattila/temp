@@ -64,7 +64,7 @@ const LogsSmsTableNotification: React.FC<LogsSmsTableNotificationProps> = ({ dat
                     <CTableDataCell>{item?.status}</CTableDataCell>
                     <CTableDataCell>{item?.createDateFa}</CTableDataCell>
                     <CTableDataCell>
-                      <CButton variant='outline' color='success' onClick={() => handleOpenDetailsModal(item)}>
+                      <CButton variant='outline' onClick={() => handleOpenDetailsModal(item)}>
                         <i className='cil-info'></i>
                       </CButton>
                     </CTableDataCell>

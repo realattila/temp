@@ -53,3 +53,12 @@ input[type='number'] {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.hidden {
+  &--xs {
+    display: none;
+    @include res(sm) {
+      display: unset;
+    }
+  }
+}

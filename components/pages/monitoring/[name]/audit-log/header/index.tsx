@@ -18,25 +18,25 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
       <div className='monitoring-name__header__box'>
         <div className='d-flex gap-2'>
           <CFormInput type='text' placeholder={t('auditLogs.header.search.placeholder')} />
-          <MyButton color='success' variant='outline'>
+          <MyButton variant='outline'>
             <i className='cil-zoom'></i>
           </MyButton>
         </div>
         <div className='d-flex gap-2 ms-auto'>
-          <MyButton color='success' variant='outline' onClick={() => openSettings()}>
+          <MyButton variant='outline' onClick={() => openSettings()}>
             <i className='cil-settings'></i>
           </MyButton>
-          <MyButton color='success' variant='outline'>
+          <MyButton variant='outline'>
             <i className='cil-copy'></i>
           </MyButton>
 
           {!showAdvancedSearch && (
-            <MyButton color='success' onClick={() => handleOpenShowAdvancedSearch()}>
+            <MyButton onClick={() => handleOpenShowAdvancedSearch()}>
               {t('auditLogs.header.advancedSearch.title')}
             </MyButton>
           )}
           {showAdvancedSearch && (
-            <MyButton color='success' onClick={() => handleCloseShowAdvancedSearch()}>
+            <MyButton onClick={() => handleCloseShowAdvancedSearch()}>
               <i className='cil-arrow-top'></i>
             </MyButton>
           )}
