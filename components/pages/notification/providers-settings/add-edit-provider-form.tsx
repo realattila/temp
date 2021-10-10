@@ -55,7 +55,7 @@ const AddEditProviderFormNotification: React.FC<AddEditProviderFormNotificationP
             />
           </CCol>
           <CCol xs={12} lg={6} xl={4} className='mb-3'>
-            <PhoneNumberInput
+            <TextInput
               name='fromNumber'
               label={t('addEditModal.form.fromNumber.label')}
               placeholder={t('addEditModal.form.fromNumber.placeholder')}
@@ -91,7 +91,7 @@ const AddEditProviderFormNotification: React.FC<AddEditProviderFormNotificationP
             />
           </CCol>
           <CCol xs={12} className='d-flex'>
-            <CLoadingButton color='success' loading={loading} disabled={loading} type='submit' className='ms-auto'>
+            <CLoadingButton loading={loading} disabled={loading} type='submit' className='ms-auto'>
               {!data ? t('addEditModal.form.submit.add') : t('addEditModal.form.submit.edit')}
             </CLoadingButton>
           </CCol>

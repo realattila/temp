@@ -18,19 +18,13 @@ const EditProviderModalNotification: React.FC<EditProviderModalNotificationProps
   getProviders,
 }) => {
   const { t } = useTranslation('pages_notification_providers-setting');
-
   const [apiLoading, setApiLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<any>(null);
 
-  const handleSubmitForm = async (data: any) => {
+  const handleSubmitForm = async (formDataSubmit: any) => {
     setApiLoading(true);
 
-    const formData = new FormData();
-    Object.keys(data).map((item) => {
-      formData.append(item, data[item]);
-    });
-
-    const res = await addProvderNotificationAPI(data);
+    const res = await addProvderNotificationAPI({ ...formDataSubmit, guid: data?.guid });
 
     if (!res.hasError) {
       setApiLoading(false);

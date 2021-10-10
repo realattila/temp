@@ -28,11 +28,6 @@ const AddProviderModalNotification: React.FC<AddProviderModalNotificationProps> 
   const handleSubmitForm = async (data: any) => {
     setApiLoading(true);
 
-    const formData = new FormData();
-    Object.keys(data).map((item) => {
-      formData.append(item, data[item]);
-    });
-
     const res = await addProvderNotificationAPI(data);
 
     if (!res.hasError) {
