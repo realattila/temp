@@ -91,7 +91,11 @@ const SendSmsNotificationForm: React.FC<SendSmsNotificationFormProps> = ({ provi
           <CLoadingButton loading={sendSmsLoading} disabled={sendSmsLoading} className='mt-4' type='submit'>
             {t('form.submit')}
           </CLoadingButton>
-          {sendSmsSuccess && <CAlert className='mt-2'>{t('form.success')}</CAlert>}
+          {sendSmsSuccess && (
+            <CAlert color='success' className='mt-2'>
+              {t('form.success')}
+            </CAlert>
+          )}
           {!!sendSmsError && <ErrorInApiAlert className='mt-2'>{sendSmsError}</ErrorInApiAlert>}
         </div>
       </Form>
