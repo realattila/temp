@@ -8,5 +8,12 @@
         "showSMSs": "نمایش پیامک ها"
       }
     }
+  },
+  "header": {
+    "avatar": {
+      "menu": {
+        "logout": "خروج"
+      }
+    }
   }
 }

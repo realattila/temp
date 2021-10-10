@@ -53,6 +53,8 @@ export interface AxiosResponse<T = any> {
   config: AxiosRequestConfig;
   request?: any;
   hasError: boolean;
+  errorText?: string;
+  errorStatus?: number;
 }
 
 export interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {}
@@ -80,13 +82,18 @@ export const axiosApi = axios.create({ baseURL: process.env.API_BASE_URL, timeou
 
 axiosApi.interceptors.response.use(
   (response) => {
-    return { ...response, hasError: false };
+    return { ...response, hasError: false, errorText: '' };
   },
-  (error: AxiosError) => {
+  (error: AxiosError) => (error: AxiosError) => {
     if (error.code === 'ECONNABORTED') {
-      return { ...error, hasError: true, statue: 500 };
+      return { ...error, hasError: true, statue: 500, errorText: error.request?.response || true };
     }
-    return { ...error, hasError: true };
+    return {
+      ...error,
+      hasError: true,
+      errorText: error.request?.response || true,
+      errorStatus: error.request?.status || 500,
+    };
   },
 );
 

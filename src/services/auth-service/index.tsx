@@ -87,7 +87,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, loadingCom
           justifyContent: 'center',
         }}
       >
-        <div>درحال بارگزاری</div>
+        <div>درحال بارگذاری</div>
       </div>
     ) : (
       loadingCompoent
@@ -107,7 +107,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, loadingCom
   );
 };
 
-export const withAuth = (WrappedComponent: React.FC) => (props: any) => {
+export const withAuth = (WrappedComponent: any) => (props: any) => {
   return (
     <AuthProvider>
       <WrappedComponent {...props} />

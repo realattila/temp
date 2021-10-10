@@ -3,6 +3,8 @@ import { CContainer, CHeader, CHeaderBrand, CHeaderNav, CHeaderToggler, CNavItem
 import { useAppDispatch } from 'src/hook/store';
 import { toggleAsideDashboard } from 'store/dashboard';
 
+import AppHeaderDropdown from 'components/layout/dashboard/header/header-dropdown';
+
 const AppHeader = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
@@ -17,7 +19,9 @@ const AppHeader = (): JSX.Element => {
         </CHeaderToggler>
         <CHeaderBrand className='mx-auto d-md-none'></CHeaderBrand>
         <CHeaderNav className='d-none d-md-flex me-auto'></CHeaderNav>
-        <CHeaderToggler className='px-md-0 me-md-3'></CHeaderToggler>
+        <CHeaderNav className='ms-3 me-4'>
+          <AppHeaderDropdown />
+        </CHeaderNav>
       </CContainer>
     </CHeader>
   );

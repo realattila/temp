@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from 'store/index';
 import { appWithTranslation } from 'next-i18next';
 import NextNProgress from 'nextjs-progressbar';
+import { withAuth } from 'services/auth-service';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,4 +18,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     </Provider>
   );
 }
-export default appWithTranslation(MyApp);
+export default appWithTranslation(withAuth(MyApp));
