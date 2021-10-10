@@ -2,6 +2,7 @@ import API from 'services/api';
 
 export const getNotificationProvidersAPI = () =>
   API({
+    baseURL: process.env.API_BASE_URL_NOTIFICATION_SERVICE,
     url: '/api/Message/GetSmsProviders',
     method: 'GET',
     withAuth: true,
@@ -9,6 +10,7 @@ export const getNotificationProvidersAPI = () =>
 
 export const sendSmsExperimentalNotificationAPI = (data: any) =>
   API({
+    baseURL: process.env.API_BASE_URL_NOTIFICATION_SERVICE,
     url: 'api/notification/SendNotification',
     withAuth: true,
     method: 'POST',
@@ -17,6 +19,7 @@ export const sendSmsExperimentalNotificationAPI = (data: any) =>
 
 export const removeProvderNotificationAPI = (data: FormData) =>
   API({
+    baseURL: process.env.API_BASE_URL_NOTIFICATION_SERVICE,
     url: 'api/Message/DeleteSmsProviders',
     withAuth: true,
     method: 'DELETE',
@@ -25,6 +28,7 @@ export const removeProvderNotificationAPI = (data: FormData) =>
 
 export const addProvderNotificationAPI = (data: FormData) =>
   API({
+    baseURL: process.env.API_BASE_URL_NOTIFICATION_SERVICE,
     url: '/api/Message/SaveSmsProviders',
     withAuth: true,
     method: 'POST',
@@ -32,4 +36,10 @@ export const addProvderNotificationAPI = (data: FormData) =>
   });
 
 export const getLogSmssNotificationAPI = (data: any) =>
-  API({ url: '/api/Message/Get', method: 'POST', withAuth: true, data });
+  API({
+    baseURL: process.env.API_BASE_URL_NOTIFICATION_SERVICE,
+    url: '/api/Message/Get',
+    method: 'POST',
+    withAuth: true,
+    data,
+  });

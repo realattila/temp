@@ -11,6 +11,7 @@ import DashboardLayout from 'components/layout/dashboard';
 import LoadingSession from 'components/common/loading-session';
 import LogsSmsTableNotification from 'components/pages/notification/log-smss/table';
 import FilterLogsSmssTableNotification from 'components/pages/notification/log-smss/filter';
+import { withAuth } from 'services/auth-service';
 
 export type paginationType = {
   pageNumber: number;
@@ -146,4 +147,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-export default ShowSmsDashboard;
+export default withAuth(ShowSmsDashboard);

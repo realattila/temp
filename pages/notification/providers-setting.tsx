@@ -10,6 +10,7 @@ import AddProviderNotification from 'components/pages/notification/providers-set
 import { getNotificationProvidersAPI } from 'services/api/notification';
 import LoadingSession from 'components/common/loading-session';
 import ProviderTableNotification from 'components/pages/notification/providers-settings/provider-table';
+import { withAuth } from 'services/auth-service';
 
 const ProvidersSettingDashboard = () => {
   const { t } = useTranslation('pages_notification_providers-setting');
@@ -67,4 +68,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-export default ProvidersSettingDashboard;
+export default withAuth(ProvidersSettingDashboard);

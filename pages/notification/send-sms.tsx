@@ -10,6 +10,7 @@ import DashboardLayout from 'components/layout/dashboard';
 import SeoHead from 'components/common/seo-head';
 import SendSmsNotificationForm from 'components/pages/notification/send-sms/form';
 import LoadingSession from 'components/common/loading-session';
+import { withAuth } from 'services/auth-service';
 
 const SendSmsNotification: NextPage = () => {
   const { t } = useTranslation('pages_notification_send-sms');
@@ -81,4 +82,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     },
   };
 };
-export default SendSmsNotification;
+export default withAuth(SendSmsNotification);

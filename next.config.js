@@ -11,7 +11,7 @@ module.exports = {
   },
   i18n,
   env: {
-    API_BASE_URL: process.env.API_BASE_URL,
+    API_BASE_URL_NOTIFICATION_SERVICE: process.env.API_BASE_URL_NOTIFICATION_SERVICE,
     SSO_AUTHORITY: process.env.SSO_AUTHORITY,
     SSO_API_URL: process.env.SSO_API_URL,
     SSO_CLIENT_ID: process.env.SSO_CLIENT_ID,
