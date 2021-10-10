@@ -84,7 +84,7 @@ axiosApi.interceptors.response.use(
   (response) => {
     return { ...response, hasError: false, errorText: '' };
   },
-  (error: AxiosError) => (error: AxiosError) => {
+  (error: AxiosError) => {
     if (error.code === 'ECONNABORTED') {
       return { ...error, hasError: true, statue: 500, errorText: error.request?.response || true };
     }
