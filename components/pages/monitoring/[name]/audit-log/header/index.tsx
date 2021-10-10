@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import AdvancedSearchHeaderAuditMonitoring from './advanced-search';
 
-const AuditLogHeadingMonitioring: React.FC = () => {
+interface AuditLogHeadingMonitioringProps {
+  openSettings: Function;
+}
+
+const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({ openSettings }) => {
   const { t } = useTranslation('pages_monitoring_[name]');
   const [showAdvancedSearch, setShowAdvancedSearch] = useState<boolean>(false);
   const handleOpenShowAdvancedSearch = () => setShowAdvancedSearch(true);
@@ -19,7 +23,7 @@ const AuditLogHeadingMonitioring: React.FC = () => {
           </MyButton>
         </div>
         <div className='d-flex gap-2 ms-auto'>
-          <MyButton color='success' variant='outline'>
+          <MyButton color='success' variant='outline' onClick={() => openSettings()}>
             <i className='cil-settings'></i>
           </MyButton>
           <MyButton color='success' variant='outline'>

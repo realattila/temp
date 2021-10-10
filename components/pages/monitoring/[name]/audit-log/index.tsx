@@ -1,11 +1,16 @@
-import AuditLogHeadingMonitioring from 'components/pages/monitoring/[name]/audit-log/header';
+import { memo } from 'react';
+import AuditLogHeadingMonitioring from './header';
 
-const AuditLogMonitoring: React.FC = () => {
+interface AuditLogMonitoringProps {
+  openSettings: Function;
+}
+
+const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = ({ openSettings }) => {
   return (
     <div className=''>
-      <AuditLogHeadingMonitioring />
+      <AuditLogHeadingMonitioring openSettings={openSettings} />
     </div>
   );
 };
 
-export default AuditLogMonitoring;
+export default memo(AuditLogMonitoring);

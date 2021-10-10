@@ -35,6 +35,22 @@
         }
       }
     }
+    &__settings-modal {
+      &__items {
+        &__item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 8px;
+          &__action {
+            cursor: pointer;
+          }
+          &:nth-child(2n) {
+            background-color: var(--cui-light);
+          }
+        }
+      }
+    }
   }
   &__results {
     &__item {
