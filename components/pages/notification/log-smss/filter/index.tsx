@@ -8,6 +8,7 @@ import Form from 'components/common/form';
 import SelectInput from 'components/common/form/select-input';
 import PhoneNumberInput from 'components/common/form/phone-number-input';
 import SwitchInput from 'components/common/form/switch-input';
+import TextInput from 'components/common/form/text-input';
 
 interface FilterLogsSmssTableNotificationProps {
   providers: any;
@@ -92,6 +93,7 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
           <CCol xxl={2} xl={3} lg={6} md={12} className='mb-2'>
             <SelectInput name='Status' list={statusTypeList} label={t('filters.statusType.label')} showLabel />
           </CCol>
+
           <CCol xxl={2} xl={3} lg={6} md={12} className='mb-2'>
             <PhoneNumberInput
               name='Recipient'
@@ -100,7 +102,14 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
               showLabel
             />
           </CCol>
-
+          <CCol xxl={2} xl={3} lg={6} md={12} className='mb-2'>
+            <TextInput
+              name='ObjectValue'
+              label={t('filters.objectValue.label')}
+              placeholder={t('filters.objectValue.placeholder')}
+              showLabel
+            />
+          </CCol>
           <RenderDatePicker />
 
           <CCol sm={12} className='d-flex'>
