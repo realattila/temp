@@ -17,6 +17,7 @@ export interface TextInputProps {
   className?: string;
   min?: number;
   max?: number;
+  customChild?: JSX.Element;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -33,6 +34,7 @@ const TextInput: React.FC<TextInputProps> = ({
   className = '',
   min,
   max,
+  customChild = <></>,
 }) => {
   const { t } = useTranslation('form');
 
@@ -55,10 +57,10 @@ const TextInput: React.FC<TextInputProps> = ({
       }}
       render={({ field: { onChange, value, name }, fieldState: { invalid, error } }) => {
         return (
-          <div>
+          <div className='form-input-group'>
             {showLabel && <CFormLabel htmlFor={`text-input_${name}`}>{label || name}</CFormLabel>}
             <CFormInput
-              className={className}
+              className={`${className} ${type === 'password' && 'password-input'}`}
               onChange={onChange}
               type={type}
               id={`text-input_${name}`}
@@ -68,6 +70,7 @@ const TextInput: React.FC<TextInputProps> = ({
               placeholder={placeholder}
               invalid={invalid}
             />
+            {customChild}
             <CFormFeedback invalid={invalid}>{error?.message}</CFormFeedback>
           </div>
         );

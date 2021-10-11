@@ -67,6 +67,14 @@
       "isActive": {
         "label": "وضعیت"
       },
+      "userName": {
+        "label": "نام کاربری",
+        "placeholder": "userName"
+      },
+      "password": {
+        "label": "رمز عبور",
+        "placeholder": "password"
+      },
       "submit": {
         "add": "ثبت اطلاعات",
         "edit": "ویرایش اطلاعات"

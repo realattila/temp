@@ -6,6 +6,7 @@ import TextInput from 'components/common/form/text-input';
 import NumberInput from 'components/common/form/number-input';
 import SwitchInput from 'components/common/form/switch-input';
 import PhoneNumberInput from 'components/common/form/phone-number-input';
+import PasswordInput from 'components/common/form/password-input';
 
 interface AddEditProviderFormNotificationProps {
   handleSubmitForm: (data?: any) => void;
@@ -79,6 +80,26 @@ const AddEditProviderFormNotification: React.FC<AddEditProviderFormNotificationP
               label={t('addEditModal.form.ports.label')}
               placeholder={t('addEditModal.form.ports.placeholder')}
               defaultValue={!!data ? data?.ports || '' : ''}
+              required
+              showLabel
+            />
+          </CCol>
+          <CCol xs={12} lg={6} xl={4} className='mb-3'>
+            <TextInput
+              name='userName'
+              label={t('addEditModal.form.userName.label')}
+              placeholder={t('addEditModal.form.userName.placeholder')}
+              defaultValue={!!data ? data?.userName || '' : ''}
+              required
+              showLabel
+            />
+          </CCol>
+          <CCol xs={12} lg={6} xl={4} className='mb-3'>
+            <PasswordInput
+              name='password'
+              label={t('addEditModal.form.password.label')}
+              placeholder={t('addEditModal.form.password.placeholder')}
+              defaultValue={!!data ? data?.password || '' : ''}
               required
               showLabel
             />
