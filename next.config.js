@@ -19,6 +19,7 @@ module.exports = {
     SSO_SILENT_REDIRECT_URI: process.env.SSO_SILENT_REDIRECT_URI,
     SSO_POST_LOGOUT_REDIRECT_URI: process.env.SSO_POST_LOGOUT_REDIRECT_URI,
     SSO_SCOPE: process.env.SSO_SCOPE,
+    API_BASE_URL_MONITORING_SERVICE: process.env.API_BASE_URL_MONITORING_SERVICE,
   },
   webpack(config, options) {
     config.resolve.alias = {

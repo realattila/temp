@@ -16,11 +16,14 @@ export type NavItem = {
   badge?: Badge;
   to: string;
   items?: NavItem[];
+  disabled?: boolean;
+  key?: string;
 };
 
 const nav = (t: any): NavItem[] => {
   return [
     {
+      key: 'notification',
       component: CNavGroup,
       name: t('sidebar.items.notification.head'),
       icon: <i className='cil-bell'></i>,
@@ -45,6 +48,14 @@ const nav = (t: any): NavItem[] => {
           to: '/notification/show-smss',
         },
       ],
+    },
+    {
+      key: 'monitoring',
+      component: CNavGroup,
+      name: t('sidebar.items.monitoring.head'),
+      icon: <i className='cil-monitor'></i>,
+      to: '/monitoring',
+      items: [],
     },
   ];
 };

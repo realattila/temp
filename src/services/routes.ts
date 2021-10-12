@@ -6,6 +6,9 @@ const routes = {
       providersSetting: () => '/notification/providers-setting',
       showSmss: () => '/notification/show-smss',
     },
+    monitoring: {
+      databases: (name: string) => `/monitoring/${name}`,
+    },
   },
   auth: {
     login: () => '/login',

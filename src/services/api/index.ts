@@ -123,10 +123,10 @@ const repeatReuest = async (_config: any) => {
   const AuthServiceInstance = new AuthService();
   return await AuthServiceInstance.renewToken()
     .then(async (user) => {
-      window.localStorage.setItem('token', user?.id_token);
+      window.localStorage.setItem('token', user?.access_token);
       const res = await axiosApi({
         ..._config,
-        headers: { ..._config.headers, Authorization: `Bearer ${user?.id_token}` },
+        headers: { ..._config.headers, Authorization: `Bearer ${user?.access_token}` },
       });
 
       return res;

@@ -30,12 +30,15 @@ export const AppSidebarNav: FC<AppSidebarNavProps> = ({ items }) => {
   };
 
   const navItem = (item: NavItem, index: number) => {
-    const { component, name, badge, icon, to, ...rest } = item;
+    const { component, name, badge, icon, to, disabled, ...rest } = item;
     const Component = component;
+    if (!!disabled) {
+      return <Component key={index} {...rest} className='d-flex align-items-center flex-wrap ' />;
+    }
     return (
       <Component key={index} {...rest} className='d-flex align-items-center flex-wrap '>
         <Link href={to}>
-          <CNavLink className={router.pathname === to ? 'active' : ''} href={to}>
+          <CNavLink className={router.asPath === to ? 'active' : ''} href={to}>
             {navLink(name, icon, badge)}
           </CNavLink>
         </Link>
