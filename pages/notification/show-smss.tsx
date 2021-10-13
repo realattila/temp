@@ -13,11 +13,7 @@ import LogsSmsTableNotification from 'components/pages/notification/log-smss/tab
 import FilterLogsSmssTableNotification from 'components/pages/notification/log-smss/filter';
 import { withAuth } from 'services/auth-service';
 
-export type paginationType = {
-  pageNumber: number;
-  totalPages: number;
-  pageSize: number;
-};
+import { paginationType } from 'types/pagination';
 
 const ShowSmsDashboard: NextPage = () => {
   const { t } = useTranslation('pages_notification_show-smss');
