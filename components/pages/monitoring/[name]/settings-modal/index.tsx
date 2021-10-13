@@ -1,6 +1,12 @@
-import { CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from '@coreui/react-pro';
-import MyButton from 'components/common/my-button';
+import { CAlert, CLoadingButton, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from '@coreui/react-pro';
+import { memo, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import randomIntNumber from 'utility/random-int-number';
+
+import MyButton from 'components/common/my-button';
+import MonitroingContext from 'store/context/monitoring';
+import { removeAuditLogDatabaseTables } from 'services/api/monitoring';
 
 interface SettingsModalMonitoringProps {
   show: boolean;
@@ -9,51 +15,81 @@ interface SettingsModalMonitoringProps {
 const SettingsModalMonitoring: React.FC<SettingsModalMonitoringProps> = ({ show, onHide }) => {
   const { t } = useTranslation(['pages_monitoring_[name]']);
 
+  const { currentDatabasTables } = useContext(MonitroingContext);
+
+  const [listItem, setListItem] = useState<Array<any>>(
+    (currentDatabasTables.data || []).map((item: any) => {
+      return {
+        ...item,
+        deleted: false,
+      };
+    }),
+  );
+
+  const [deleteItemsLoading, setDeleteItemsLoading] = useState<boolean>(false);
+  const [deleteItemsError, setDeleteItemsError] = useState<any>(null);
+  const [deleteItemsSuccess, setDeleteItemsSuccess] = useState<boolean>(false);
+
+  const setDeletedToTrueItem = (itemName: string) => {
+    setListItem((preValueList: Array<any>) =>
+      preValueList.map((item) => (item.name === itemName ? { ...item, deleted: true } : item)),
+    );
+  };
+
+  const setDeletedToFalseItem = (itemName: string) => {
+    setListItem((preValueList: Array<any>) =>
+      preValueList.map((item) => (item.name === itemName ? { ...item, deleted: false } : item)),
+    );
+  };
+
+  const saveChangeOnDeletedTables = async () => {
+    setDeleteItemsLoading(false);
+    setDeleteItemsError(null);
+    setDeleteItemsSuccess(false);
+
+    let selectedItemsToDelete: Array<any> = [];
+
+    listItem.map((item) => {
+      if (item.deleted) {
+        selectedItemsToDelete.push(item.guid);
+      }
+    });
+
+    const res = await removeAuditLogDatabaseTables(selectedItemsToDelete);
+
+    if (!res.hasError) {
+      setDeleteItemsSuccess(true);
+    } else {
+      setDeleteItemsError(res.errorText);
+    }
+    setDeleteItemsLoading(false);
+  };
+
   const RenderItems = () => {
     return (
       <div className='monitoring-name__header__settings-modal__items'>
-        <div className='monitoring-name__header__settings-modal__items__item'>
-          <span className='monitoring-name__header__settings-modal__items__item__action'>
-            <i className='cil-plus'></i>
-          </span>
-          <span>this database is fake</span>
-        </div>
-        <div className='monitoring-name__header__settings-modal__items__item'>
-          <span className='monitoring-name__header__settings-modal__items__item__action'>
-            <i className='cil-trash'></i>
-          </span>
-          <span>this database is fake</span>
-        </div>
-        <div className='monitoring-name__header__settings-modal__items__item'>
-          <span className='monitoring-name__header__settings-modal__items__item__action'>
-            <i className='cil-trash'></i>
-          </span>
-          <span>this database is fake</span>
-        </div>
-        <div className='monitoring-name__header__settings-modal__items__item'>
-          <span className='monitoring-name__header__settings-modal__items__item__action'>
-            <i className='cil-plus'></i>
-          </span>
-          <span>this database is fake</span>
-        </div>
-        <div className='monitoring-name__header__settings-modal__items__item'>
-          <span className='monitoring-name__header__settings-modal__items__item__action'>
-            <i className='cil-plus'></i>
-          </span>
-          <span>this database is fake</span>
-        </div>
-        <div className='monitoring-name__header__settings-modal__items__item'>
-          <span className='monitoring-name__header__settings-modal__items__item__action'>
-            <i className='cil-plus'></i>
-          </span>
-          <span>this database is fake</span>
-        </div>
-        <div className='monitoring-name__header__settings-modal__items__item'>
-          <span className='monitoring-name__header__settings-modal__items__item__action'>
-            <i className='cil-plus'></i>
-          </span>
-          <span>this database is fake</span>
-        </div>
+        {listItem.map((item: any) => {
+          return (
+            <div key={randomIntNumber()} className='monitoring-name__header__settings-modal__items__item'>
+              {item?.deleted ? (
+                <span
+                  className='monitoring-name__header__settings-modal__items__item__action'
+                  onClick={() => setDeletedToFalseItem(item.name)}
+                >
+                  <i className='cil-plus'></i>
+                </span>
+              ) : (
+                <span
+                  className='monitoring-name__header__settings-modal__items__item__action'
+                  onClick={() => setDeletedToTrueItem(item.name)}
+                >
+                  <i className='cil-trash'></i>
+                </span>
+              )}
+              <span>{item.name}</span>
+            </div>
+          );
+        })}
       </div>
     );
   };
@@ -85,15 +121,32 @@ const SettingsModalMonitoring: React.FC<SettingsModalMonitoringProps> = ({ show,
             </MyButton>
           </div>
           <div className='d-flex gap-2'>
-            <MyButton color='dark' variant='ghost'>
+            <MyButton color='dark' variant='ghost' onClick={() => onHide()}>
               {t('settingsModal.action.cancel')}
             </MyButton>
-            <MyButton>{t('settingsModal.action.submit')}</MyButton>
+            <CLoadingButton
+              loading={deleteItemsLoading}
+              disabled={deleteItemsLoading}
+              onClick={() => saveChangeOnDeletedTables()}
+            >
+              {t('settingsModal.action.submit')}
+            </CLoadingButton>
           </div>
         </div>
+        {!!deleteItemsError && (
+          <CAlert className='mt-2 w-100' color='danger'>
+            {deleteItemsError}
+          </CAlert>
+        )}
+
+        {deleteItemsSuccess && (
+          <CAlert className='mt-2 w-100' color='success'>
+            {t('settingsModal.successDeleted')}
+          </CAlert>
+        )}
       </CModalFooter>
     </CModal>
   );
 };
 
-export default SettingsModalMonitoring;
+export default memo(SettingsModalMonitoring);

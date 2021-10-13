@@ -70,7 +70,7 @@ const monitoringListItem = () => {
           <CNavItem {...props}>
             <CNavLink>
               <span>{t('sidebar.items.error.title')}</span>
-              <CButton className='ms-2' color='secondary' variant='ghost'>
+              <CButton onClick={() => getMonitoringList()} className='ms-2' color='secondary' variant='ghost'>
                 {t('sidebar.items.error.action')}
               </CButton>
             </CNavLink>

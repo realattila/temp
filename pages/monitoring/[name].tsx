@@ -19,11 +19,6 @@ interface MonitoringNameProps {
 const MonitoringName: NextPage<MonitoringNameProps> = ({ query }) => {
   const { t } = useTranslation(['pages_monitoring_[name]']);
 
-  const [settingsModal, setSettingsModal] = useState<boolean>(false);
-
-  const handleShowSettingsModal = () => setSettingsModal(true);
-  const handleCloseSettingsModal = () => setSettingsModal(false);
-
   const [selectedTab, setSelectedTab] = useState<string>('audit');
   return (
     <>
@@ -32,12 +27,11 @@ const MonitoringName: NextPage<MonitoringNameProps> = ({ query }) => {
           <CRow>
             <CCol xs={12}>
               <TabsMonitioring selectedTabState={[selectedTab, setSelectedTab]} />
-              {selectedTab === 'audit' && <AuditLogMonitoring openSettings={handleShowSettingsModal} />}
+              {selectedTab === 'audit' && <AuditLogMonitoring />}
               <AuditLogMonitoringList />
             </CCol>
           </CRow>
         </CContainer>
-        {settingsModal && <SettingsModalMonitoring show={settingsModal} onHide={handleCloseSettingsModal} />}
       </DashboardLayout>
       <SeoHead title={t('seo.title')} description={t('seo.description')} />
     </>
