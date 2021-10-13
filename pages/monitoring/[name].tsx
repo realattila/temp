@@ -7,10 +7,8 @@ import { useTranslation } from 'react-i18next';
 
 import SeoHead from 'components/common/seo-head';
 import DashboardLayout from 'components/layout/dashboard';
-import AuditLogMonitoringList from 'components/pages/monitoring/[name]/audit-log/list';
 import TabsMonitioring from 'components/pages/monitoring/[name]/tabs';
 import AuditLogMonitoring from 'components/pages/monitoring/[name]/audit-log';
-import SettingsModalMonitoring from 'components/pages/monitoring/[name]/settings-modal';
 
 interface MonitoringNameProps {
   query: ParsedUrlQuery;
@@ -28,7 +26,6 @@ const MonitoringName: NextPage<MonitoringNameProps> = ({ query }) => {
             <CCol xs={12}>
               <TabsMonitioring selectedTabState={[selectedTab, setSelectedTab]} />
               {selectedTab === 'audit' && <AuditLogMonitoring />}
-              <AuditLogMonitoringList />
             </CCol>
           </CRow>
         </CContainer>

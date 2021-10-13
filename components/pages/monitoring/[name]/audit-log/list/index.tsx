@@ -31,12 +31,16 @@ interface AuditLogMonitoringListProps {
       | 'light-gradient'
       | string;
   };
+  data: Array<any>;
 }
 
 const AuditLogMonitoringList: React.FC<AuditLogMonitoringListProps> = ({
   status = { type: 'primary', content: '' },
+  data,
 }) => {
   const [activeKey, setActiveKey] = useState(0);
+
+  console.log('data', data);
 
   return (
     <CAccordion className='monitoring-name__results'>

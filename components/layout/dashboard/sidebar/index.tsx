@@ -16,32 +16,16 @@ import navigation from './nav';
 import { showAsideDashboard } from 'store/dashboard';
 import { useTranslation } from 'react-i18next';
 
-import { getMonitoringDatebasesAPI } from 'services/api/monitoring';
-import { useRouter } from 'next/router';
 import routes from 'services/routes';
+import { requestToGetDabasesMonitoring } from 'store/monitoring';
 
 const monitoringListItem = () => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<any>(null);
-  const [data, setData] = useState<any>(null);
-
-  const router = useRouter();
-
   const { t } = useTranslation('layout_dashboard');
 
-  const getMonitoringList = async () => {
-    setLoading(true);
-    setError(null);
-    setData(null);
-    const res = await getMonitoringDatebasesAPI();
+  const dispatch = useAppDispatch();
+  const { data, loading, error } = useAppSelector((state) => state.monitroing.databases);
 
-    if (!res.hasError) {
-      setData(res.data);
-    } else {
-      setError(res.errorText);
-    }
-    setLoading(false);
-  };
+  const getMonitoringList = () => dispatch(requestToGetDabasesMonitoring());
 
   useEffect(() => {
     getMonitoringList();

@@ -11,6 +11,7 @@ import SettingsModalMonitoring from '../settings-modal';
 import AuditLogHeadingMonitioring from './header';
 
 import { paginationType } from 'types/pagination';
+import AuditLogMonitoringList from './list';
 
 interface AuditLogMonitoringProps {}
 
@@ -73,7 +74,14 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
   }, [currentDatabasTables.data]);
 
   const handleShowSettingsModal = (data?: any) => setSettingsModal(data || true);
-  const handleCloseSettingsModal = () => setSettingsModal(false);
+  const handleCloseSettingsModal = async (reloadData: boolean) => {
+    if (reloadData) {
+      getAuditLogTablesData();
+      setSettingsModal(false);
+    } else {
+      setSettingsModal(false);
+    }
+  };
 
   return (
     <div className=''>
@@ -93,6 +101,8 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
         style={{ height: '400px' }}
       >
         <AuditLogHeadingMonitioring openSettings={() => handleShowSettingsModal(true)} />
+
+        <AuditLogMonitoringList data={auditLogsData} />
 
         {settingsModal && <SettingsModalMonitoring show={!!settingsModal} onHide={handleCloseSettingsModal} />}
       </LoadingSession>
