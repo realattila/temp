@@ -58,21 +58,27 @@ const AuditLogMonitoringListItem: React.FC<AuditLogMonitoringListItemProps> = ({
             </div>
             <div className='text-right'>
               <div className='text-secondary d-flex gap-2 align-items-center'>
-                <span>{t('auditLogs.list.item.tableName')}</span>
+                <span>{t('auditLogs.list.item.details.tableNameFa')}</span>
               </div>
-              <div>{data?.tableName}</div>
+              <div>{data?.tableNameFa || data?.tableName}</div>
             </div>
             <div className='text-right'>
               <div className='text-secondary d-flex gap-2 align-items-center'>
-                <span>{t('auditLogs.list.item.fieldName')}</span>
+                <span>{t('auditLogs.list.item.details.fieldNameFa')}</span>
               </div>
-              <div>{data?.fieldName}</div>
+              <div>{data?.fieldNameFa || data?.fieldName}</div>
             </div>
-            <div className='text-right'>
-              <div className='text-secondary d-flex gap-2 align-items-center'>
-                <span>{t('auditLogs.list.item.ip')}</span>
+            <div className='text-right d-flex flex-column '>
+              <div className='text-secondary d-flex gap-2 align-items-center text-size-small'>
+                <span>{t('auditLogs.list.item.details.originalValueOnUpdate')}</span>
               </div>
-              <div>{data?.ip}</div>
+              <div>{data?.originalValueOnUpdate}</div>
+            </div>
+            <div className='text-right d-flex flex-column '>
+              <div className='text-secondary d-flex gap-2 align-items-center text-size-small'>
+                <span>{t('auditLogs.list.item.details.currentValue')}</span>
+              </div>
+              <div>{data?.currentValue}</div>
             </div>
             <div className='text-right d-flex flex-column '>
               <div className='text-secondary d-flex gap-2 align-items-center text-size-small'>
@@ -129,6 +135,20 @@ const AuditLogMonitoringListItem: React.FC<AuditLogMonitoringListItemProps> = ({
               <span> : </span>
               <span>{data?.archive}</span>
             </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.tableName')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.tableName}</span>
+            </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.fieldName')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.fieldName}</span>
+            </div>
             <div>
               <span>
                 <strong>{t('auditLogs.list.item.details.tableNameFa')}</strong>
@@ -156,6 +176,14 @@ const AuditLogMonitoringListItem: React.FC<AuditLogMonitoringListItemProps> = ({
               </span>
               <span> : </span>
               <span>{data?.requestNO}</span>
+            </div>
+
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.ip')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.ip}</span>
             </div>
           </div>
         </CAccordionBody>
