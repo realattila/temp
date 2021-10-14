@@ -10,8 +10,8 @@
       },
       "advancedSearch": {
         "title": "جستجوی پیشرفته",
-        "rangeDate": {
-          "label": "انتخاب بازه زمانی"
+        "datePicker": {
+          "label": "انتخاب تاریخ"
         },
         "tabelName": {
           "label": "فیلتر براساس نام جدول"

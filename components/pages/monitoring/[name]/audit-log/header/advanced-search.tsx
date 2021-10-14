@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 import withForm from 'src/hook/form';
 import MonitroingContext from 'store/context/monitoring';
 
-import DateRangePicker from 'components/common/form/date-range-picker';
 import SelectInput from 'components/common/form/select-input';
 import MyButton from 'components/common/my-button';
+import DatePickerInput from 'components/common/form/date-picker-input';
 
 const AdvancedSearchHeaderAuditMonitoring: React.FC = () => {
   const { t } = useTranslation('pages_monitoring_[name]');
@@ -23,7 +23,7 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC = () => {
       <CRow className='align-items-end'>
         <CCol xs={12} sm={6} md={6} lg={4} xl={4} xxl={3}>
           <div className='monitoring-name__header__advanced-search__item'>
-            <DateRangePicker name='attila' showLabel label={t('auditLogs.header.advancedSearch.rangeDate.label')} />
+            <DatePickerInput name='attila' showLabel label={t('auditLogs.header.advancedSearch.datePicker.label')} />
           </div>
         </CCol>
         <CCol xs={12} sm={6} md={6} lg={4} xl={3} xxl={3}>
@@ -44,12 +44,12 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC = () => {
               showLabel
               list={[
                 {
-                  value: 'all',
-                  label: 'همه',
+                  value: 'update',
+                  label: 'update',
                 },
                 {
-                  value: 'none',
-                  label: 'هیچ کدام',
+                  value: 'delete',
+                  label: 'delete',
                 },
               ]}
             />
