@@ -32,6 +32,8 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
     pageSize: 50,
   });
 
+  const [filters, setFilters] = useState<any>({});
+
   const getAuditLogTablesData = async () => {
     await getDatabaseTables(String(router.query?.name));
   };
@@ -65,7 +67,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
   useEffect(() => {
     //   currentDatabasTables.data is success
     if (!!currentDatabasTables.data) {
-      getAuditLogsData(pagination, {});
+      getAuditLogsData(pagination, filters);
     }
   }, [currentDatabasTables.data]);
 
@@ -82,7 +84,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
   const handleChangePage = async (data: any) => {
     const newPagination = { ...pagination, pageNumber: Number(data.page) };
     setPagination(newPagination);
-    getAuditLogsData(newPagination, {});
+    getAuditLogsData(newPagination, filters);
   };
 
   const onRetryGetData = () => {
@@ -90,30 +92,83 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
     if (!!currentDatabasTables.data) {
       getAuditLogTablesData();
     } else {
-      getAuditLogsData(pagination, {});
+      getAuditLogsData(pagination, filters);
     }
   };
 
+  const handlechangeAdvancedSearch = async (data: any) => {
+    if (!data.showDateInFilter) {
+      delete data.actionDateTime;
+    }
+    delete data.showDateInFilter;
+
+    Object.keys(data).map((item) => {
+      if (data[item] === '-1' || data[item] === '') {
+        delete data[item];
+      }
+    });
+    setFilters(data);
+    getAuditLogsData({ ...pagination, pageNumber: 1 }, data);
+  };
+
+  const handleChangeSearch = async (data: any) => {
+    const searchFiels: Array<string> = [
+      'ip',
+      'fieldName',
+      'tableName',
+      'username',
+      'rowId',
+      'originalValueOnUpdate',
+      'originalValuesOnDelete',
+      'currentValue',
+      'rc',
+      'archive',
+      'tableNameFa',
+      'fieldNameFa',
+      'folderCode',
+      'requestNO',
+    ];
+    const newFilters: any = () => {
+      let tempObject: any = { ...filters };
+      if (data.search != '') {
+        searchFiels.map((item) => {
+          tempObject = { ...tempObject, [item]: data.search };
+        });
+      } else {
+        searchFiels.map((item) => {
+          delete tempObject[item];
+        });
+      }
+      return tempObject;
+    };
+
+    setFilters(newFilters());
+    getAuditLogsData({ ...pagination, pageNumber: 1 }, newFilters());
+  };
   return (
     <div className=''>
-      {/* <LoadingSession
-        loading={loadingAuditLogTablesData || loadingAuditLogsData}
-        error={errorAuditLogTablesData || errorAuditLogsData}
-        data={auditLogTablesData || auditLogsData}
-        onRetry={() => onRetryGetData()}
-        style={{ height: '400px' }}
-      > */}
-
       <LoadingSession
-        loading={currentDatabasTables.loading || loadingAuditLogsData}
-        error={currentDatabasTables.error || errorAuditLogsData}
-        data={currentDatabasTables.data || auditLogsData}
+        loading={currentDatabasTables.loading}
+        error={currentDatabasTables.error}
+        data={currentDatabasTables.data}
         onRetry={() => onRetryGetData()}
         style={{ height: '400px' }}
       >
-        <AuditLogHeadingMonitioring openSettings={() => handleShowSettingsModal(true)} />
+        <AuditLogHeadingMonitioring
+          openSettings={() => handleShowSettingsModal(true)}
+          handlechangeAdvancedSearch={handlechangeAdvancedSearch}
+          handleChangeSearch={handleChangeSearch}
+        />
 
-        <AuditLogMonitoringList data={auditLogsData} handleChangePage={handleChangePage} pagination={pagination} />
+        <LoadingSession
+          loading={loadingAuditLogsData}
+          error={errorAuditLogsData}
+          data={auditLogsData?.items?.length}
+          onRetry={() => onRetryGetData()}
+          style={{ height: '400px' }}
+        >
+          <AuditLogMonitoringList data={auditLogsData} handleChangePage={handleChangePage} pagination={pagination} />
+        </LoadingSession>
 
         {settingsModal && <SettingsModalMonitoring show={!!settingsModal} onHide={handleCloseSettingsModal} />}
       </LoadingSession>

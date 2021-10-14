@@ -19,6 +19,9 @@
         "status": {
           "label": "فیلتر براساس وضعیت"
         },
+        "showDateInFilter": {
+          "label": "نمایش تاریخ"
+        },
         "submit": "جستجو"
       }
     },

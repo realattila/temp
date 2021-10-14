@@ -1,14 +1,23 @@
 import { CFormInput } from '@coreui/react-pro';
+import Form, { FieldValues } from 'components/common/form';
+import TextInput from 'components/common/form/text-input';
 import MyButton from 'components/common/my-button';
 import { useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import AdvancedSearchHeaderAuditMonitoring from './advanced-search';
 
 interface AuditLogHeadingMonitioringProps {
   openSettings: Function;
+  handlechangeAdvancedSearch: SubmitHandler<FieldValues>;
+  handleChangeSearch: SubmitHandler<FieldValues>;
 }
 
-const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({ openSettings }) => {
+const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
+  openSettings,
+  handlechangeAdvancedSearch,
+  handleChangeSearch,
+}) => {
   const { t } = useTranslation('pages_monitoring_[name]');
   const [showAdvancedSearch, setShowAdvancedSearch] = useState<boolean>(false);
   const handleOpenShowAdvancedSearch = () => setShowAdvancedSearch(true);
@@ -16,12 +25,15 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
   return (
     <div className='monitoring-name__header'>
       <div className='monitoring-name__header__box'>
-        <div className='d-flex gap-2'>
-          <CFormInput type='text' placeholder={t('auditLogs.header.search.placeholder')} />
-          <MyButton variant='outline'>
-            <i className='cil-zoom'></i>
-          </MyButton>
-        </div>
+        <Form onSubmit={handleChangeSearch}>
+          <div className='d-flex gap-2'>
+            <TextInput name='search' placeholder={t('auditLogs.header.search.placeholder')} />
+            <MyButton type='submit' variant='outline'>
+              <i className='cil-zoom'></i>
+            </MyButton>
+          </div>
+        </Form>
+
         <div className='d-flex gap-2 ms-auto'>
           <MyButton variant='outline' onClick={() => openSettings()}>
             <i className='cil-settings'></i>
@@ -42,7 +54,7 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
           )}
         </div>
       </div>
-      {showAdvancedSearch && <AdvancedSearchHeaderAuditMonitoring />}
+      {showAdvancedSearch && <AdvancedSearchHeaderAuditMonitoring handleSubmitForm={handlechangeAdvancedSearch} />}
     </div>
   );
 };
