@@ -94,21 +94,16 @@ const SettingsModalMonitoring: React.FC<SettingsModalMonitoringProps> = ({ show,
     setAddLoading(true);
     setAddError(null);
     SetAddSuccess(false);
-
     let databaseId = '';
     databasesList.map((item: any) => {
       if (item?.name === router?.query?.name) {
         return (databaseId = item.id);
       }
     });
-
     const res = await addAuditLogDatabasesTableAPI({
       Name: data.name || '',
       DatabaseId: databaseId,
     });
-
-    console.log('res', res.data);
-
     if (!res.hasError) {
       SetAddSuccess(true);
       setAddLoading(false);

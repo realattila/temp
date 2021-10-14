@@ -42,24 +42,20 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
     setAuditLogsData(null);
     const res = await getAuditLogsDataAPI({
       pagination,
-      filters: {},
+      filters: filters,
       sort: ['CreateDate Desc'],
     });
     if (!res.hasError) {
       setAuditLogsData(res.data);
+      setPagination({
+        pageNumber: res.data?.pagination?.pageNumber,
+        pageSize: res.data?.pagination?.pageSize,
+        totalPages: res.data?.total,
+      });
     } else {
       setErrorAuditLogsData(res.errorText);
     }
     setLoadingAuditLogsData(false);
-  };
-
-  const onRetryGetData = () => {
-    //   currentDatabasTables.data is success
-    if (!!currentDatabasTables.data) {
-      getAuditLogTablesData();
-    } else {
-      getAuditLogsData(pagination, {});
-    }
   };
 
   useEffect(() => {
@@ -83,6 +79,21 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
     }
   };
 
+  const handleChangePage = async (data: any) => {
+    const newPagination = { ...pagination, pageNumber: Number(data.page) };
+    setPagination(newPagination);
+    getAuditLogsData(newPagination, {});
+  };
+
+  const onRetryGetData = () => {
+    //   currentDatabasTables.data is success
+    if (!!currentDatabasTables.data) {
+      getAuditLogTablesData();
+    } else {
+      getAuditLogsData(pagination, {});
+    }
+  };
+
   return (
     <div className=''>
       {/* <LoadingSession
@@ -102,7 +113,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
       >
         <AuditLogHeadingMonitioring openSettings={() => handleShowSettingsModal(true)} />
 
-        <AuditLogMonitoringList data={auditLogsData} />
+        <AuditLogMonitoringList data={auditLogsData} handleChangePage={handleChangePage} />
 
         {settingsModal && <SettingsModalMonitoring show={!!settingsModal} onHide={handleCloseSettingsModal} />}
       </LoadingSession>

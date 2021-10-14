@@ -7,5 +7,11 @@
   },
   "errorInApi": {
     "content": "خطایی رخ داده است"
+  },
+  "pagination": {
+    "content": "صفحه {{current}} از {{total}}",
+    "submit": "برو",
+    "next": "بعدی",
+    "previous": "قبلی"
   }
 }
