@@ -1,14 +1,18 @@
 import { CAccordion } from '@coreui/react-pro';
+
 import Pagination from 'components/common/pagination';
+import { paginationType } from 'types/pagination';
 import randomIntNumber from 'utility/random-int-number';
+
 import AuditLogMonitoringListItem from './item';
 
 interface AuditLogMonitoringListProps {
   data: any;
   handleChangePage: Function;
+  pagination: paginationType;
 }
 
-const AuditLogMonitoringList: React.FC<AuditLogMonitoringListProps> = ({ data, handleChangePage }) => {
+const AuditLogMonitoringList: React.FC<AuditLogMonitoringListProps> = ({ data, handleChangePage, pagination }) => {
   const RenderItems = () =>
     (data?.items || []).map((item: any) => {
       const statusType = () => {
@@ -34,7 +38,7 @@ const AuditLogMonitoringList: React.FC<AuditLogMonitoringListProps> = ({ data, h
     <div className='d-flex flex-column gap-4'>
       <CAccordion className='monitoring-name__results'>{RenderItems()}</CAccordion>
       <div>
-        <Pagination handleChangePage={handleChangePage} pagination={{ pageNumber: 1, pageSize: 50, totalPages: 50 }} />
+        <Pagination handleChangePage={handleChangePage} pagination={pagination} />
       </div>
     </div>
   );

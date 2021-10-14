@@ -5,13 +5,10 @@ import { useEffect } from 'react';
 import Form from 'components/common/form';
 import NumberInput from 'components/common/form/number-input';
 import { CButton } from '@coreui/react-pro';
+import { paginationType } from 'types/pagination';
 
-interface PaginationProps {
-  pagination: {
-    pageNumber: number;
-    totalPages: number;
-    pageSize: number;
-  };
+export interface PaginationProps {
+  pagination: paginationType;
   handleChangePage: Function;
 }
 const Pagination: React.FC<PaginationProps> = ({ pagination, handleChangePage }) => {

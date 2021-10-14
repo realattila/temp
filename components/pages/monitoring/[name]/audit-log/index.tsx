@@ -50,7 +50,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
       setPagination({
         pageNumber: res.data?.pagination?.pageNumber,
         pageSize: res.data?.pagination?.pageSize,
-        totalPages: res.data?.total,
+        totalPages: Math.ceil(res.data?.total / res.data?.pagination?.pageSize),
       });
     } else {
       setErrorAuditLogsData(res.errorText);
@@ -105,15 +105,15 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
       > */}
 
       <LoadingSession
-        loading={currentDatabasTables.loading}
-        error={currentDatabasTables.error}
-        data={currentDatabasTables.data}
+        loading={currentDatabasTables.loading || loadingAuditLogsData}
+        error={currentDatabasTables.error || errorAuditLogsData}
+        data={currentDatabasTables.data || auditLogsData}
         onRetry={() => onRetryGetData()}
         style={{ height: '400px' }}
       >
         <AuditLogHeadingMonitioring openSettings={() => handleShowSettingsModal(true)} />
 
-        <AuditLogMonitoringList data={auditLogsData} handleChangePage={handleChangePage} />
+        <AuditLogMonitoringList data={auditLogsData} handleChangePage={handleChangePage} pagination={pagination} />
 
         {settingsModal && <SettingsModalMonitoring show={!!settingsModal} onHide={handleCloseSettingsModal} />}
       </LoadingSession>
