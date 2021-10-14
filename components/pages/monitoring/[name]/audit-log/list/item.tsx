@@ -86,11 +86,78 @@ const AuditLogMonitoringListItem: React.FC<AuditLogMonitoringListItemProps> = ({
       </CAccordionHeader>
       <CAccordionCollapse visible={activeKey === 1}>
         <CAccordionBody>
-          <strong>This is the first item&#39;s accordion body.</strong> It is hidden by default, until the collapse
-          plugin adds the appropriate classes that we use to style each element. These classes control the overall
-          appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS
-          or overriding our default variables. It&#39;s also worth noting that just about any HTML can go within the{' '}
-          <code>.accordion-body</code>, though the transition does limit overflow.
+          <div className='d-flex flex-column gap-2'>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.details.rowId')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.rowId}</span>
+            </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.details.originalValueOnUpdate')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.originalValueOnUpdate}</span>
+            </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.details.originalValuesOnDelete')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.originalValuesOnDelete}</span>
+            </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.details.currentValue')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.currentValue}</span>
+            </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.details.rc')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.rc}</span>
+            </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.details.archive')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.archive}</span>
+            </div>
+            <div>
+              <span>
+                <strong>{t('auditLogs.list.item.details.tableNameFa')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.tableNameFa}</span>
+            </div>
+            <div>
+              <span>
+                <strong>{t('auditLogs.list.item.details.fieldNameFa')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.fieldNameFa}</span>
+            </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.details.folderCode')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.folderCode}</span>
+            </div>
+            <div className='ltr'>
+              <span>
+                <strong>{t('auditLogs.list.item.details.requestNO')}</strong>
+              </span>
+              <span> : </span>
+              <span>{data?.requestNO}</span>
+            </div>
+          </div>
         </CAccordionBody>
       </CAccordionCollapse>
     </CAccordionItem>

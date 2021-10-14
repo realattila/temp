@@ -28,7 +28,19 @@
         "ip": "ip",
         "fieldName": "field Name",
         "tableName": "tableName",
-        "username": "userName"
+        "username": "userName",
+        "details": {
+          "rowId": "rowId",
+          "originalValueOnUpdate": "originalValueOnUpdate",
+          "originalValuesOnDelete": "originalValuesOnDelete",
+          "currentValue": "currentValue",
+          "rc": "rc",
+          "archive": "archive",
+          "tableNameFa": "tableNameFa",
+          "fieldNameFa": "fieldNameFa",
+          "folderCode": "folderCode",
+          "requestNO": "requestNO"
+        }
       }
     }
   },
