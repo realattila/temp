@@ -18,10 +18,8 @@ import navigation from './nav';
 import routes from 'services/routes';
 import { requestToGetDabasesMonitoring } from 'store/monitoring';
 
-const monitoringListItem = (t: any, dispatch: any, getMonitoringList: any) => {
-  const { data, loading, error } = useAppSelector((state) => state.monitroing.databases);
-
-  if (loading) {
+const monitoringListItem = (t: any, dispatch: any, getMonitoringList: any, monitroingDatabases: any) => {
+  if (monitroingDatabases?.loading) {
     return [
       {
         component: (props: any) => (
@@ -37,7 +35,7 @@ const monitoringListItem = (t: any, dispatch: any, getMonitoringList: any) => {
         key: 'loading',
       },
     ];
-  } else if (!loading && !!error) {
+  } else if (!monitroingDatabases?.loading && !!monitroingDatabases?.error) {
     return [
       {
         component: (props: any) => (
@@ -57,7 +55,7 @@ const monitoringListItem = (t: any, dispatch: any, getMonitoringList: any) => {
       },
     ];
   } else {
-    return (data || []).map((item: any) => {
+    return (monitroingDatabases?.data || []).map((item: any) => {
       return {
         component: CNavItem,
         name: item?.name,
@@ -72,10 +70,11 @@ const AppSidebar = () => {
   const toggleAside = useAppSelector((state) => state.dashboard.toggleAside);
   const dispatch = useAppDispatch();
   const getMonitoringList = () => dispatch(requestToGetDabasesMonitoring());
+  const monitroingDatabases = useAppSelector((state) => state.monitroing.databases);
 
   const { t } = useTranslation('layout_dashboard');
 
-  const monitoringList = monitoringListItem(t, dispatch, getMonitoringList);
+  const monitoringList = monitoringListItem(t, dispatch, getMonitoringList, monitroingDatabases);
 
   useEffect(() => {}, []);
   useEffect(() => {
