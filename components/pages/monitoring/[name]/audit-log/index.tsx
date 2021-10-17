@@ -46,7 +46,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
       OperationType: 'OR',
 
       pagination,
-      filters: filters,
+      filters: { ...filters, DatabaseName: router.query?.name },
       sort: ['CreateDate Desc'],
     });
     if (!res.hasError) {
