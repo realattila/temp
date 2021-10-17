@@ -8,7 +8,7 @@ const config = {
           type: 'string',
         },
         {
-          value: 'تاریخ ',
+          value: 'تاریخ رویداد ',
           type: 'string',
         },
         {
