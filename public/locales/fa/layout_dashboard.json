@@ -2,13 +2,13 @@
   "sidebar": {
     "items": {
       "notification": {
-        "head": "اعلانات",
+        "head": "پیامک",
         "sendSms": "ارسال پیامک",
         "providersSetting": "تنظیمات سرویس دهنده",
         "showSMSs": "نمایش پیامک ها"
       },
       "monitoring": {
-        "head": "مانیتورینگ"
+        "head": "رویدادنگار"
       },
       "loading": "درحال بارگذاری ...",
       "error": {
