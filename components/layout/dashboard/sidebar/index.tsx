@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect } from 'react';
 import { CButton, CNavItem, CNavLink, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react-pro';
+import { showAsideDashboard } from 'store/dashboard';
+import { useTranslation } from 'react-i18next';
 
 import { useAppSelector, useAppDispatch } from 'src/hook/store';
 
@@ -13,23 +14,12 @@ import images from 'images/index';
 
 // sidebar nav config
 import navigation from './nav';
-import { showAsideDashboard } from 'store/dashboard';
-import { useTranslation } from 'react-i18next';
 
 import routes from 'services/routes';
 import { requestToGetDabasesMonitoring } from 'store/monitoring';
 
-const monitoringListItem = () => {
-  const { t } = useTranslation('layout_dashboard');
-
-  const dispatch = useAppDispatch();
+const monitoringListItem = (t: any, dispatch: any, getMonitoringList: any) => {
   const { data, loading, error } = useAppSelector((state) => state.monitroing.databases);
-
-  const getMonitoringList = () => dispatch(requestToGetDabasesMonitoring());
-
-  useEffect(() => {
-    getMonitoringList();
-  }, []);
 
   if (loading) {
     return [
@@ -81,15 +71,19 @@ const monitoringListItem = () => {
 const AppSidebar = () => {
   const toggleAside = useAppSelector((state) => state.dashboard.toggleAside);
   const dispatch = useAppDispatch();
+  const getMonitoringList = () => dispatch(requestToGetDabasesMonitoring());
+
   const { t } = useTranslation('layout_dashboard');
 
-  const monitoringList = monitoringListItem();
+  const monitoringList = monitoringListItem(t, dispatch, getMonitoringList);
 
+  useEffect(() => {}, []);
   useEffect(() => {
     const breakPoint = String(window.getComputedStyle(document.body, ':before').content);
     if (breakPoint != '"xs"' && breakPoint != '"sm"' && breakPoint != '"md"' && breakPoint != '"lg"') {
       dispatch(showAsideDashboard());
     }
+    getMonitoringList();
   }, []);
 
   let appSidebarNavList = navigation(t);

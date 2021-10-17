@@ -1,5 +1,5 @@
 import { CCol, CRow } from '@coreui/react-pro';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import withForm from 'src/hook/form';
@@ -99,4 +99,4 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
   );
 };
 
-export default withForm(AdvancedSearchHeaderAuditMonitoring);
+export default memo(withForm(AdvancedSearchHeaderAuditMonitoring));

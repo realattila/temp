@@ -24,7 +24,7 @@ const MonitoringName: NextPage<MonitoringNameProps> = ({ query }) => {
         <CContainer className='monitoring-name'>
           <CRow>
             <CCol xs={12}>
-              <TabsMonitioring selectedTabState={[selectedTab, setSelectedTab]} />
+              {/* <TabsMonitioring selectedTabState={[selectedTab, setSelectedTab]} /> */}
               {selectedTab === 'audit' && <AuditLogMonitoring />}
             </CCol>
           </CRow>

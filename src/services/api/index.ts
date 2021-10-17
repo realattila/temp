@@ -129,6 +129,11 @@ const repeatReuest = async (_config: any) => {
         headers: { ..._config.headers, Authorization: `Bearer ${user?.access_token}` },
       });
 
+      if (res.status === 401 || res.request.status === 401) {
+        AuthServiceInstance.login();
+        return res;
+      }
+
       return res;
     })
     .catch((e) => {

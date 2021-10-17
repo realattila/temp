@@ -43,6 +43,8 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
     setErrorAuditLogsData(null);
     setAuditLogsData(null);
     const res = await getAuditLogsDataAPI({
+      OperationType: 'OR',
+
       pagination,
       filters: filters,
       sort: ['CreateDate Desc'],
@@ -98,7 +100,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
 
   const handlechangeAdvancedSearch = async (data: any) => {
     if (!data.showDateInFilter) {
-      delete data.actionDateTime;
+      delete data.ActionDateTime;
     }
     delete data.showDateInFilter;
 
@@ -119,7 +121,6 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
       'username',
       'rowId',
       'originalValueOnUpdate',
-      'originalValuesOnDelete',
       'currentValue',
       'rc',
       'archive',
@@ -158,6 +159,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
           openSettings={() => handleShowSettingsModal(true)}
           handlechangeAdvancedSearch={handlechangeAdvancedSearch}
           handleChangeSearch={handleChangeSearch}
+          auditLogsData={auditLogsData}
         />
 
         <LoadingSession
