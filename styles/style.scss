@@ -19,6 +19,7 @@ $enable-rtl: true; /* stylelint-disable-line scss/dollar-variable-default */
 @import './common/loading-session';
 @import './common/form';
 
+@import './pages/dashboard';
 @import './pages/notification/show-smss';
 @import './pages/monitoring/name';
 

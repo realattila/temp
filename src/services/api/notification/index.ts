@@ -43,3 +43,12 @@ export const getLogSmssNotificationAPI = (data: any) =>
     withAuth: true,
     data,
   });
+
+export const getStatusNotificationAPI = (date: Date) =>
+  API({
+    url: 'api/Message/GetStatisticData',
+    method: 'GET',
+    withAuth: true,
+    params: { date },
+    baseURL: process.env.API_BASE_URL_NOTIFICATION_SERVICE,
+  });

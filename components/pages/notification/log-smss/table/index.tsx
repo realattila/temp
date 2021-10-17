@@ -17,14 +17,20 @@ import LogsSmsTablePaginationNotification from './pagination';
 
 interface LogsSmsTableNotificationProps {
   data: any;
-  pagination: {
+  pagination?: {
     pageNumber: number;
     totalPages: number;
     pageSize: number;
   };
-  handleChangePage: Function;
+  handleChangePage?: Function;
+  showPagination?: boolean;
 }
-const LogsSmsTableNotification: React.FC<LogsSmsTableNotificationProps> = ({ data, pagination, handleChangePage }) => {
+const LogsSmsTableNotification: React.FC<LogsSmsTableNotificationProps> = ({
+  data,
+  pagination = { pageNumber: 1, totalPages: 1, pageSize: 50 },
+  handleChangePage = () => {},
+  showPagination = true,
+}) => {
   const { t } = useTranslation('pages_notification_show-smss');
 
   const [detailsModal, setDetailsModal] = useState<any>(null);
@@ -74,7 +80,9 @@ const LogsSmsTableNotification: React.FC<LogsSmsTableNotificationProps> = ({ dat
             </CTableBody>
           </CTable>
         </div>
-        <LogsSmsTablePaginationNotification pagination={pagination} handleChangePage={handleChangePage} />
+        {showPagination && (
+          <LogsSmsTablePaginationNotification pagination={pagination} handleChangePage={handleChangePage} />
+        )}
       </div>
       <DetailsModallogSmssTableNotification
         data={detailsModal}
