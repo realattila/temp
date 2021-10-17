@@ -1,9 +1,7 @@
 import zipcelx from 'zipcelx';
-import { useContext, useState } from 'react';
-import { SubmitHandler } from 'react-hook-form';
+import { useState } from 'react';
+import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-
-import MonitroingContext from 'store/context/monitoring';
 
 import Form, { FieldValues } from 'components/common/form';
 import TextInput from 'components/common/form/text-input';
@@ -160,13 +158,30 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
     zipcelx(newConfig);
   };
 
+  const ResetFormButton = () => {
+    const { reset } = useFormContext();
+
+    const resetForm = () => {
+      reset({
+        search: '',
+      });
+    };
+
+    return (
+      <MyButton onClick={() => resetForm()} color='danger' variant='outline'>
+        <i className='cil-trash'></i>
+      </MyButton>
+    );
+  };
+
   return (
     <div className='monitoring-name__header'>
       <div className='monitoring-name__header__box'>
         <Form onSubmit={handleChangeSearch}>
           <div className='d-flex gap-2'>
             <TextInput name='search' placeholder={t('auditLogs.header.search.placeholder')} />
-            <MyButton type='submit' variant='outline'>
+            <ResetFormButton />
+            <MyButton type='submit'>
               <i className='cil-zoom'></i>
             </MyButton>
           </div>

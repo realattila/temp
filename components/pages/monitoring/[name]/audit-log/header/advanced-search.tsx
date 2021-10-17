@@ -20,13 +20,17 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
 }) => {
   const { t } = useTranslation('pages_monitoring_[name]');
 
-  const { handleSubmit } = useFormContext();
+  const { handleSubmit, reset } = useFormContext();
 
   const { currentDatabasTables } = useContext(MonitroingContext);
 
   const tablesNameList = (currentDatabasTables.data || []).map((item: any) => {
     return { value: item.name, label: item.name };
   });
+
+  const resetForm = () => {
+    reset();
+  };
 
   const RenderDatePicker = () => {
     const { watch } = useFormContext();
@@ -35,7 +39,7 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
 
     return (
       <>
-        <CCol className='d-flex align-self-end mb-2'>
+        <CCol xxl={2} xl={2} lg={2} md={6} sm={6} xs={12} className='d-flex align-self-end mb-2'>
           <SwitchInput name='showDateInFilter' label={t('auditLogs.header.advancedSearch.showDateInFilter.label')} />
         </CCol>
 
@@ -75,11 +79,11 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
               showLabel
               list={[
                 {
-                  value: 'Update',
+                  value: 'update',
                   label: 'Update',
                 },
                 {
-                  value: 'Delete',
+                  value: 'delete',
                   label: 'Delete',
                 },
               ]}
@@ -89,8 +93,12 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
 
         <RenderDatePicker />
 
-        <CCol className='d-flex'>
-          <div className='monitoring-name__header__advanced-search__item d-flex ms-auto mt-2'>
+        <CCol xs={12} className='d-flex'>
+          <div className='monitoring-name__header__advanced-search__item d-flex ms-auto mt-2 gap-2'>
+            <MyButton color='danger' variant='outline' onClick={() => resetForm()}>
+              {t('auditLogs.header.advancedSearch.reset')}
+            </MyButton>
+
             <MyButton type='submit'>{t('auditLogs.header.advancedSearch.submit')}</MyButton>
           </div>
         </CCol>
