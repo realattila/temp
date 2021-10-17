@@ -27,22 +27,22 @@
     },
     "list": {
       "item": {
-        "actionDate": "action Date",
-        "ip": "ip",
-        "fieldName": "field Name",
-        "tableName": "tableName",
-        "username": "userName",
+        "actionDate": "تاریخ رویداد",
+        "ip": "آی پی",
+        "fieldName": "نام ستون",
+        "tableName": "نام جدول",
+        "username": "نام کاربری",
         "details": {
-          "rowId": "rowId",
-          "originalValueOnUpdate": "originalValueOnUpdate",
-          "originalValuesOnDelete": "originalValuesOnDelete",
-          "currentValue": "currentValue",
-          "rc": "rc",
-          "archive": "archive",
-          "tableNameFa": "tableNameFa",
-          "fieldNameFa": "fieldNameFa",
-          "folderCode": "folderCode",
-          "requestNO": "requestNO"
+          "rowId": "شناسه",
+          "originalValueOnUpdate": "مقدار قبل ویرایش",
+          "originalValuesOnDelete": "مقدار قبل حذف",
+          "currentValue": "مقدار کنونی",
+          "rc": "کد نوسازی",
+          "archive": "نام بایگانی",
+          "tableNameFa": "نام فارسی جدول",
+          "fieldNameFa": "نام فارسی ردیف",
+          "folderCode": "شماره پرونده",
+          "requestNO": "شماره درخواست"
         }
       }
     }
