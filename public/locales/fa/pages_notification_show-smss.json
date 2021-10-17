@@ -3,6 +3,7 @@
   "filters": {
     "title": "فیلتر نتایج",
     "submit": "اعمال",
+    "reset": "پاک کردن",
     "fromDate": "از تاریخ",
     "toDate": "تا تاریخ",
     "createDate": {
@@ -35,6 +36,10 @@
     "objectValue": {
       "label": "مقادیر",
       "placeholder": "objectValue"
+    },
+    "body": {
+      "label": "متن پیام",
+      "placeholder": "متن پیام"
     }
   },
   "table": {

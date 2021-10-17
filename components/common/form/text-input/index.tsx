@@ -65,7 +65,7 @@ const TextInput: React.FC<TextInputProps> = ({
               type={type}
               id={`text-input_${name}`}
               value={value}
-              required
+              required={false}
               disabled={disabled}
               placeholder={placeholder}
               invalid={invalid}

@@ -64,7 +64,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
               }}
               id={`number-input_${name}`}
               value={value}
-              required
+              required={required}
               disabled={disabled}
               placeholder={placeholder}
               invalid={invalid}

@@ -9,6 +9,7 @@ import SelectInput from 'components/common/form/select-input';
 import PhoneNumberInput from 'components/common/form/phone-number-input';
 import SwitchInput from 'components/common/form/switch-input';
 import TextInput from 'components/common/form/text-input';
+import withForm from 'src/hook/form';
 
 interface FilterLogsSmssTableNotificationProps {
   providers: any;
@@ -20,6 +21,8 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
   handleChangeFilters,
 }) => {
   const { t } = useTranslation('pages_notification_show-smss');
+
+  const { watch, reset, handleSubmit, setValue } = useFormContext();
 
   let providersList: Array<any> = [];
 
@@ -56,18 +59,26 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
     },
   ];
 
-  const RenderDatePicker = () => {
-    const { watch } = useFormContext();
+  const resetFormData = () => {
+    reset({
+      Recipient: '',
+      ObjectValue: '',
+      Body: '',
+    });
+  };
 
+  const RenderDatePicker = () => {
     const showDateInFilterValue = watch('showDateInFilter');
 
     return (
       <>
         <CCol className='d-flex align-self-end mb-2'>
-          <SwitchInput name='showDateInFilter' label={t('filters.showDateInFilter.label')} />
+          <SwitchInput name='showDateInFilter' label={t('filters.showDateInFilter.label')} defaultValue={false} />
         </CCol>
         <CCol xxl={2} xl={3} lg={6} md={12} className='mb-2'>
-          {showDateInFilterValue && <DatePickerInput name='CreateDate' label={t('filters.createDate.label')} />}
+          {showDateInFilterValue && (
+            <DatePickerInput name='CreateDate' label={t('filters.createDate.label')} defaultValue={new Date()} />
+          )}
         </CCol>
       </>
     );
@@ -76,7 +87,7 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
   return (
     <div className='shadow p-4 bg-white mb-3 '>
       <h4>{t('filters.title')}</h4>
-      <Form onSubmit={handleChangeFilters}>
+      <form onSubmit={handleSubmit(handleChangeFilters)}>
         <CRow>
           <CCol xxl={2} xl={3} lg={6} md={12} className='mb-2'>
             <SelectInput
@@ -100,6 +111,7 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
               label={t('filters.recipient.label')}
               placeholder={t('filters.recipient.placeholder')}
               showLabel
+              defaultValue=''
             />
           </CCol>
           <CCol xxl={2} xl={3} lg={6} md={12} className='mb-2'>
@@ -108,19 +120,34 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
               label={t('filters.objectValue.label')}
               placeholder={t('filters.objectValue.placeholder')}
               showLabel
+              defaultValue=''
+            />
+          </CCol>
+
+          <CCol xxl={2} xl={3} lg={6} md={12} className='mb-2'>
+            <TextInput
+              name='Body'
+              label={t('filters.body.label')}
+              placeholder={t('filters.body.placeholder')}
+              showLabel
+              defaultValue=''
             />
           </CCol>
           <RenderDatePicker />
 
-          <CCol sm={12} className='d-flex'>
-            <CButton className='me-auto mt-2' type='submit' variant='outline'>
+          <CCol sm={12} className='d-flex gap-2'>
+            <CButton onClick={() => resetFormData()} className='mt-2' color='danger' variant='outline'>
+              {t('filters.reset')}
+            </CButton>
+
+            <CButton className='me-auto mt-2' type='submit'>
               {t('filters.submit')}
             </CButton>
           </CCol>
         </CRow>
-      </Form>
+      </form>
     </div>
   );
 };
 
-export default FilterLogsSmssTableNotification;
+export default withForm(FilterLogsSmssTableNotification);
