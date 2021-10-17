@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { CButton, CNavItem, CNavLink, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react-pro';
 import { showAsideDashboard } from 'store/dashboard';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
 
 import { useAppSelector, useAppDispatch } from 'src/hook/store';
 
@@ -99,7 +100,11 @@ const AppSidebar = () => {
   return (
     <CSidebar position='fixed' selfHiding='sm' visible={toggleAside}>
       <CSidebarBrand className=' d-flex p-4'>
-        <img src={images.logo.saman.src} className='img-fluid' />
+        <Link href='/'>
+          <a>
+            <img src={images.logo.saman.src} className='img-fluid' />
+          </a>
+        </Link>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
