@@ -65,11 +65,11 @@ const DetailsModallogSmssTableNotification: React.FC<DetailsModallogSmssTableNot
             <span>{data?.body}</span>
           </div>
 
-          <div>
+          {/* <div>
             <strong>{t(`table.head.items.notificationType`)}</strong>
             <span> : </span>
             <span>{data?.notificationType}</span>
-          </div>
+          </div> */}
         </div>
       </CModalBody>
     </CModal>
