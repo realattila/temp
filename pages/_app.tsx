@@ -8,8 +8,12 @@ import { store } from 'store/index';
 import { appWithTranslation } from 'next-i18next';
 import NextNProgress from 'nextjs-progressbar';
 import { withAuth } from 'services/auth-service';
+import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    document.dir = 'rtl';
+  }, []);
   return (
     <Provider store={store}>
       <NextNProgress color='#00b67a' startPosition={0.3} stopDelayMs={200} height={2} showOnShallow={true} />
