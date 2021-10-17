@@ -47,19 +47,22 @@ const SendSmsNotificationForm: React.FC<SendSmsNotificationFormProps> = ({ provi
 
     useEffect(() => {
       if (!!providerNameValue) {
-        (providersList || []).map((item: any) => {
-          if (item.value === providerNameValue) {
-            if (!!item.toTestNumber) {
-              setDisable(true);
-            } else {
-              setDisable(false);
-            }
-            setValue('Recipient', item.toTestNumber || '');
+        const findProviderName = (providersList || []).find((el: any) => el.value === providerNameValue);
+        if (!!findProviderName) {
+          if (!!findProviderName?.toTestNumber) {
+            setDisable(true);
+            setValue('Recipient', findProviderName?.toTestNumber);
           } else {
             setDisable(false);
             setValue('Recipient', '');
           }
-        });
+        } else {
+          setDisable(false);
+          setValue('Recipient', '');
+        }
+      } else {
+        setDisable(false);
+        setValue('Recipient', '');
       }
     }, [providerNameValue]);
 
