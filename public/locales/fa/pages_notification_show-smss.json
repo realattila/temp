@@ -41,7 +41,7 @@
     "head": {
       "items": {
         "id": "ردیف",
-        "requesterName": "نام درخواست دهنده",
+        "requesterName": "نام کاربر",
         "recipient": "شماره گیرنده",
         "status": "وضعیت",
         "createDateFa": "تاریخ ایجاد",
