@@ -32,10 +32,6 @@ const config = {
           type: 'string',
         },
         {
-          value: 'مقدار قبل ویرایش',
-          type: 'string',
-        },
-        {
           value: 'مقدار قبل حذف',
           type: 'string',
         },

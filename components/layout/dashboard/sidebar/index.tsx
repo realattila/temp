@@ -56,7 +56,6 @@ const monitoringListItem = (t: any, dispatch: any, getMonitoringList: any, monit
     ];
   } else {
     return (monitroingDatabases?.data || []).map((item: any) => {
-      console.log('item', item);
       return {
         component: CNavItem,
         name: item?.appName || item?.name,

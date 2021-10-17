@@ -26,15 +26,71 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
   handleChangeSearch,
   auditLogsData,
 }) => {
-  const { currentDatabasTables } = useContext(MonitroingContext);
   const { t } = useTranslation('pages_monitoring_[name]');
   const [showAdvancedSearch, setShowAdvancedSearch] = useState<boolean>(false);
   const handleOpenShowAdvancedSearch = () => setShowAdvancedSearch(true);
   const handleCloseShowAdvancedSearch = () => setShowAdvancedSearch(false);
 
   const handleCreateExcel = () => {
-    (auditLogsData?.items || []).map((item: any, index: number) => {
-      config.sheet.data.push([
+    let logsForExecl = auditLogsData;
+    let newConfig = config;
+    newConfig.sheet.data = [];
+    newConfig.sheet.data.push([
+      {
+        value: 'ردیف ',
+        type: 'string',
+      },
+      {
+        value: 'تاریخ رویداد ',
+        type: 'string',
+      },
+      {
+        value: 'آی پی ',
+        type: 'string',
+      },
+      {
+        value: 'نام ستون',
+        type: 'string',
+      },
+      {
+        value: 'نام جدول',
+        type: 'string',
+      },
+      {
+        value: 'نام کاربری',
+        type: 'string',
+      },
+      {
+        value: 'شناسه',
+        type: 'string',
+      },
+      {
+        value: 'مقدار قبل حذف',
+        type: 'string',
+      },
+      {
+        value: 'مقدار کنونی',
+        type: 'string',
+      },
+      {
+        value: 'کد نوسازی',
+        type: 'string',
+      },
+      {
+        value: 'نام بایگانی',
+        type: 'string',
+      },
+      {
+        value: 'شماره پرونده',
+        type: 'string',
+      },
+      {
+        value: 'شماره درخواست',
+        type: 'string',
+      },
+    ]);
+    (logsForExecl?.items || []).map((item: any, index: number) => {
+      newConfig.sheet.data.push([
         {
           value: index + 1,
           type: 'string',
@@ -100,7 +156,8 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
         },
       ]);
     });
-    zipcelx(config);
+
+    zipcelx(newConfig);
   };
 
   return (
