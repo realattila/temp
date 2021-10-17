@@ -56,9 +56,10 @@ const monitoringListItem = (t: any, dispatch: any, getMonitoringList: any, monit
     ];
   } else {
     return (monitroingDatabases?.data || []).map((item: any) => {
+      console.log('item', item);
       return {
         component: CNavItem,
-        name: item?.name,
+        name: item?.appName || item?.name,
         icon: <i className='cil-grip'></i>,
         to: routes.dashboard.monitoring.databases(item?.name),
       };
