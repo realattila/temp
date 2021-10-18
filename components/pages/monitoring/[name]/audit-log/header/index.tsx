@@ -160,7 +160,7 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
     zipcelx(newConfig);
   };
 
-  const SearchForm = withForm(() => {
+  const SearchForm = () => {
     const { reset, handleSubmit } = useFormContext();
     useEffect(() => {
       eventBus.on(EVENT_BUS_ACTIONS.MONITORING.ADVANCED_SEARCH_SUBMITED, (data) => {
@@ -197,12 +197,14 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
         </div>
       </form>
     );
-  });
+  };
+
+  const SearchFormWithForm = withForm(SearchForm);
 
   return (
     <div className='monitoring-name__header'>
       <div className='monitoring-name__header__box'>
-        <SearchForm />
+        <SearchFormWithForm />
         <div className='d-flex gap-2 ms-auto'>
           <MyButton variant='outline' onClick={() => openSettings()}>
             <i className='cil-settings'></i>
