@@ -23,3 +23,24 @@
     cursor: pointer;
   }
 }
+
+.form-input-group {
+  position: relative;
+  .password-input {
+    padding-left: 30px;
+    &.is-invalid {
+      background-image: none;
+    }
+  }
+  .toggle-password {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    left: 10px;
+    top: 12px;
+    &.with-label {
+      top: 44px;
+    }
+  }
+}
