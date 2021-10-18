@@ -2,21 +2,23 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CAvatar, CDropdown, CDropdownDivider, CDropdownItem, CDropdownMenu, CDropdownToggle } from '@coreui/react-pro';
 
 import images from 'public/images';
-import AuthContext from 'services/auth-service';
+import AuthContext, { AuthService } from 'services/auth-service';
 import { useTranslation } from 'react-i18next';
 
 const AppHeaderDropdown: React.FC = () => {
-  const { getUser, logout } = useContext(AuthContext);
   const { t } = useTranslation('layout_dashboard');
   const [userName, setUserName] = useState<string>('');
+
   useEffect(() => {
-    getUser().then((user) => {
+    const AuthServiceInstance = new AuthService();
+    AuthServiceInstance.getUser().then((user) => {
       setUserName(user?.profile?.name || '');
     });
   }, []);
 
   const logoutUser = () => {
-    logout().then(() => {
+    const AuthServiceInstance = new AuthService();
+    AuthServiceInstance.logout().then(() => {
       window.localStorage.removeItem('token');
     });
   };

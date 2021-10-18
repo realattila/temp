@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { GetServerSideProps, NextPage } from 'next';
+import type { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -7,16 +7,18 @@ import { CCol, CContainer, CRow } from '@coreui/react-pro';
 import Link from 'next/link';
 
 import { getLogSmssNotificationAPI, getStatusNotificationAPI } from 'services/api/notification';
+import { AuthProvider } from 'services/auth-service';
+import routes from 'services/routes';
 
 import DashboardLayout from 'components/layout/dashboard';
 import DatePickerInput from 'components/common/form/date-picker-input';
 import Form from 'components/common/form';
 import LoadingSession from 'components/common/loading-session';
 import DashboardStatusList from 'components/pages/dashboard/dashboard_status/dashboard_status_list';
-import routes from 'services/routes';
 import LogsSmsTableNotification from 'components/pages/notification/log-smss/table';
+import SeoHead from 'components/common/seo-head';
 
-const Home: NextPage = () => {
+const Home = () => {
   const { t } = useTranslation('page_dashboard');
 
   const [apiStatusData, setApiStatusData] = useState<any>(null);
@@ -90,7 +92,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <DashboardLayout>
+    <>
       <CContainer>
         <CRow>
           <CCol xs={12}>
@@ -137,6 +139,16 @@ const Home: NextPage = () => {
           </CCol>
         </CRow>
       </CContainer>
+
+      <SeoHead title={t('seo.title')} description={t('seo.description')} />
+    </>
+  );
+};
+
+Home.getLayout = function getLayout(page: any) {
+  return (
+    <DashboardLayout>
+      <AuthProvider>{page}</AuthProvider>
     </DashboardLayout>
   );
 };

@@ -4,13 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { CContainer, CRow } from '@coreui/react-pro';
 import { useEffect, useState } from 'react';
 
+import { AuthProvider } from 'services/auth-service';
+
 import DashboardLayout from 'components/layout/dashboard';
 import SeoHead from 'components/common/seo-head';
 import AddProviderNotification from 'components/pages/notification/providers-settings/add-provider';
 import { getNotificationProvidersAPI } from 'services/api/notification';
 import LoadingSession from 'components/common/loading-session';
 import ProviderTableNotification from 'components/pages/notification/providers-settings/provider-table';
-import { withAuth } from 'services/auth-service';
 
 const ProvidersSettingDashboard = () => {
   const { t } = useTranslation('pages_notification_providers-setting');
@@ -38,25 +39,31 @@ const ProvidersSettingDashboard = () => {
 
   return (
     <>
-      <DashboardLayout>
-        <h1 className='dashboard__title'>{t('title')}</h1>
-        <CContainer fluid>
-          <CRow>
-            <LoadingSession
-              error={providerNotificationError}
-              data={ProviderNotificationData}
-              loading={providerNotificationLoading}
-              onRetry={getProvidersNotification}
-              style={{ height: '400px' }}
-            >
-              <AddProviderNotification getProviders={getProvidersNotification} />
-              <ProviderTableNotification data={ProviderNotificationData} getProviders={getProvidersNotification} />
-            </LoadingSession>
-          </CRow>
-        </CContainer>
-      </DashboardLayout>
+      <h1 className='dashboard__title'>{t('title')}</h1>
+      <CContainer fluid>
+        <CRow>
+          <LoadingSession
+            error={providerNotificationError}
+            data={ProviderNotificationData}
+            loading={providerNotificationLoading}
+            onRetry={getProvidersNotification}
+            style={{ height: '400px' }}
+          >
+            <AddProviderNotification getProviders={getProvidersNotification} />
+            <ProviderTableNotification data={ProviderNotificationData} getProviders={getProvidersNotification} />
+          </LoadingSession>
+        </CRow>
+      </CContainer>
       <SeoHead title={t('seo.title')} description={t('seo.description')} />
     </>
+  );
+};
+
+ProvidersSettingDashboard.getLayout = function getLayout(page: any) {
+  return (
+    <DashboardLayout>
+      <AuthProvider>{page}</AuthProvider>
+    </DashboardLayout>
   );
 };
 
@@ -68,4 +75,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-export default withAuth(ProvidersSettingDashboard);
+export default ProvidersSettingDashboard;

@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { CCol, CContainer, CRow } from '@coreui/react-pro';
 
 import { getNotificationProvidersAPI } from 'services/api/notification';
+import { AuthProvider } from 'services/auth-service';
 
 import DashboardLayout from 'components/layout/dashboard';
 import SeoHead from 'components/common/seo-head';
 import SendSmsNotificationForm from 'components/pages/notification/send-sms/form';
 import LoadingSession from 'components/common/loading-session';
-import { withAuth } from 'services/auth-service';
 
-const SendSmsNotification: NextPage = () => {
+const SendSmsNotification = () => {
   const { t } = useTranslation('pages_notification_send-sms');
 
   const [notificationProvidersData, setNotificationProvidersData] = useState<any>(null);
@@ -52,26 +52,32 @@ const SendSmsNotification: NextPage = () => {
 
   return (
     <>
-      <DashboardLayout>
-        <h1 className='  dashboard__title'>{t('title')}</h1>
-        <CContainer>
-          <CRow className='justify-content-center'>
-            <CCol xs={12} sm={12} md={12} lg={10} xl={8} xxl={6}>
-              <LoadingSession
-                data={!!notificationProvidersData}
-                loading={notificationProvidersLoading}
-                error={notificationProvidersError}
-                onRetry={getNotificationProviders}
-                style={{ height: '400px' }}
-              >
-                <SendSmsNotificationForm providersList={providersList} />
-              </LoadingSession>
-            </CCol>
-          </CRow>
-        </CContainer>
-      </DashboardLayout>
+      <h1 className='  dashboard__title'>{t('title')}</h1>
+      <CContainer>
+        <CRow className='justify-content-center'>
+          <CCol xs={12} sm={12} md={12} lg={10} xl={8} xxl={6}>
+            <LoadingSession
+              data={!!notificationProvidersData}
+              loading={notificationProvidersLoading}
+              error={notificationProvidersError}
+              onRetry={getNotificationProviders}
+              style={{ height: '400px' }}
+            >
+              <SendSmsNotificationForm providersList={providersList} />
+            </LoadingSession>
+          </CCol>
+        </CRow>
+      </CContainer>
       <SeoHead title={t('seo.title')} description={t('seo.description')} />
     </>
+  );
+};
+
+SendSmsNotification.getLayout = function getLayout(page: any) {
+  return (
+    <DashboardLayout>
+      <AuthProvider>{page}</AuthProvider>
+    </DashboardLayout>
   );
 };
 
@@ -82,4 +88,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     },
   };
 };
-export default withAuth(SendSmsNotification);
+export default SendSmsNotification;

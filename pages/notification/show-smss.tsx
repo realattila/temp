@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -11,11 +11,11 @@ import DashboardLayout from 'components/layout/dashboard';
 import LoadingSession from 'components/common/loading-session';
 import LogsSmsTableNotification from 'components/pages/notification/log-smss/table';
 import FilterLogsSmssTableNotification from 'components/pages/notification/log-smss/filter';
-import { withAuth } from 'services/auth-service';
+import { AuthProvider } from 'services/auth-service';
 
 import { paginationType } from 'types/pagination';
 
-const ShowSmsDashboard: NextPage = () => {
+const ShowSmsDashboard = () => {
   const { t } = useTranslation('pages_notification_show-smss');
 
   const [apiData, setApiData] = useState<any>(null);
@@ -99,42 +99,47 @@ const ShowSmsDashboard: NextPage = () => {
 
   return (
     <>
-      <DashboardLayout>
-        <h1 className='dashboard__title'>{t('title')}</h1>
-        <CContainer fluid className='show-smss'>
-          <CRow>
-            <CCol xs={12} className='show-smss__filter__wapper'>
-              <LoadingSession
-                loading={apiProviderLoading}
-                error={apiProviderError}
-                onRetry={getProviders}
-                data={!!apiProviderData}
-                style={{ height: '100px' }}
-              >
-                <FilterLogsSmssTableNotification
-                  providers={apiProviderData}
-                  handleChangeFilters={handleChangeFilters}
-                />
-              </LoadingSession>
-            </CCol>
-            <CCol xs={12}>
-              <LoadingSession
-                loading={apiLoading}
-                error={apiError}
-                data={!!apiData?.items?.length}
-                onRetry={() => getLogs(pagination, filters)}
-                style={{ height: '400px' }}
-              >
-                <LogsSmsTableNotification data={apiData} pagination={pagination} handleChangePage={handleChangePage} />
-              </LoadingSession>
-            </CCol>
-          </CRow>
-        </CContainer>
-      </DashboardLayout>
+      <h1 className='dashboard__title'>{t('title')}</h1>
+      <CContainer fluid className='show-smss'>
+        <CRow>
+          <CCol xs={12} className='show-smss__filter__wapper'>
+            <LoadingSession
+              loading={apiProviderLoading}
+              error={apiProviderError}
+              onRetry={getProviders}
+              data={!!apiProviderData}
+              style={{ height: '100px' }}
+            >
+              <FilterLogsSmssTableNotification providers={apiProviderData} handleChangeFilters={handleChangeFilters} />
+            </LoadingSession>
+          </CCol>
+          <CCol xs={12}>
+            <LoadingSession
+              loading={apiLoading}
+              error={apiError}
+              data={!!apiData?.items?.length}
+              onRetry={() => getLogs(pagination, filters)}
+              style={{ height: '400px' }}
+            >
+              <LogsSmsTableNotification data={apiData} pagination={pagination} handleChangePage={handleChangePage} />
+            </LoadingSession>
+          </CCol>
+        </CRow>
+      </CContainer>
+
       <SeoHead title={t('seo.title')} description={t('seo.description')} />
     </>
   );
 };
+
+ShowSmsDashboard.getLayout = function getLayout(page: any) {
+  return (
+    <DashboardLayout>
+      <AuthProvider>{page}</AuthProvider>
+    </DashboardLayout>
+  );
+};
+
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
@@ -143,4 +148,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-export default withAuth(ShowSmsDashboard);
+export default ShowSmsDashboard;
