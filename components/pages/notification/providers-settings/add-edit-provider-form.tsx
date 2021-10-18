@@ -90,7 +90,6 @@ const AddEditProviderFormNotification: React.FC<AddEditProviderFormNotificationP
               label={t('addEditModal.form.userName.label')}
               placeholder={t('addEditModal.form.userName.placeholder')}
               defaultValue={!!data ? data?.userName || '' : ''}
-              required
               showLabel
             />
           </CCol>
@@ -100,7 +99,6 @@ const AddEditProviderFormNotification: React.FC<AddEditProviderFormNotificationP
               label={t('addEditModal.form.password.label')}
               placeholder={t('addEditModal.form.password.placeholder')}
               defaultValue={!!data ? data?.password || '' : ''}
-              required
               showLabel
             />
           </CCol>
