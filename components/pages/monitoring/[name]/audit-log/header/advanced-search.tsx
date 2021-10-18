@@ -1,9 +1,10 @@
 import { CCol, CRow } from '@coreui/react-pro';
-import { memo, useContext } from 'react';
+import { memo, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import withForm from 'src/hook/form';
 import MonitroingContext from 'store/context/monitoring';
+import eventBus, { EVENT_BUS_ACTIONS } from 'services/event-bus';
 
 import SelectInput from 'components/common/form/select-input';
 import MyButton from 'components/common/my-button';
@@ -20,7 +21,7 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
 }) => {
   const { t } = useTranslation('pages_monitoring_[name]');
 
-  const { handleSubmit, reset } = useFormContext();
+  const { handleSubmit, reset, watch } = useFormContext();
 
   const { currentDatabasTables } = useContext(MonitroingContext);
 
@@ -28,13 +29,20 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
     return { value: item.name, label: item.name };
   });
 
+  useEffect(() => {
+    eventBus.on(EVENT_BUS_ACTIONS.MONITORING.SEARCH_SUBMITED, (data) => {
+      reset();
+    });
+    return () => {
+      eventBus.remove(EVENT_BUS_ACTIONS.MONITORING.SEARCH_SUBMITED, () => {});
+    };
+  }, []);
+
   const resetForm = () => {
     reset();
   };
 
   const RenderDatePicker = () => {
-    const { watch } = useFormContext();
-
     const showDateInFilterValue = watch('showDateInFilter');
 
     return (
@@ -59,7 +67,13 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
   };
 
   return (
-    <form onSubmit={handleSubmit(handleSubmitForm)} className='monitoring-name__header__advanced-search'>
+    <form
+      onSubmit={handleSubmit((data) => {
+        eventBus.dispatch(EVENT_BUS_ACTIONS.MONITORING.ADVANCED_SEARCH_SUBMITED, '');
+        handleSubmitForm(data);
+      })}
+      className='monitoring-name__header__advanced-search'
+    >
       <CRow className='align-items-end'>
         <CCol xs={12} sm={6} md={6} lg={4} xl={3} xxl={3}>
           <div className='monitoring-name__header__advanced-search__item'>

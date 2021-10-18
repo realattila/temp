@@ -1,5 +1,5 @@
 import zipcelx from 'zipcelx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +10,8 @@ import MyButton from 'components/common/my-button';
 import AdvancedSearchHeaderAuditMonitoring from 'components/pages/monitoring/[name]/audit-log/header/advanced-search';
 
 import config from 'components/pages/monitoring/[name]/audit-log/header/excelConfig';
+import eventBus, { EVENT_BUS_ACTIONS } from 'services/event-bus';
+import withForm from 'src/hook/form';
 
 interface AuditLogHeadingMonitioringProps {
   openSettings: Function;
@@ -158,8 +160,18 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
     zipcelx(newConfig);
   };
 
-  const ResetFormButton = () => {
-    const { reset } = useFormContext();
+  const SearchForm = withForm(() => {
+    const { reset, handleSubmit } = useFormContext();
+    useEffect(() => {
+      eventBus.on(EVENT_BUS_ACTIONS.MONITORING.ADVANCED_SEARCH_SUBMITED, (data) => {
+        reset({
+          search: '',
+        });
+      });
+      return () => {
+        eventBus.remove(EVENT_BUS_ACTIONS.MONITORING.ADVANCED_SEARCH_SUBMITED, () => {});
+      };
+    }, []);
 
     const resetForm = () => {
       reset({
@@ -168,25 +180,29 @@ const AuditLogHeadingMonitioring: React.FC<AuditLogHeadingMonitioringProps> = ({
     };
 
     return (
-      <MyButton onClick={() => resetForm()} color='danger' variant='outline'>
-        <i className='cil-trash'></i>
-      </MyButton>
+      <form
+        onSubmit={handleSubmit((data) => {
+          eventBus.dispatch(EVENT_BUS_ACTIONS.MONITORING.SEARCH_SUBMITED, '');
+          handleChangeSearch(data);
+        })}
+      >
+        <div className='d-flex gap-2'>
+          <TextInput name='search' placeholder={t('auditLogs.header.search.placeholder')} />
+          <MyButton onClick={() => resetForm()} color='danger' variant='outline'>
+            <i className='cil-trash'></i>
+          </MyButton>
+          <MyButton type='submit'>
+            <i className='cil-zoom'></i>
+          </MyButton>
+        </div>
+      </form>
     );
-  };
+  });
 
   return (
     <div className='monitoring-name__header'>
       <div className='monitoring-name__header__box'>
-        <Form onSubmit={handleChangeSearch}>
-          <div className='d-flex gap-2'>
-            <TextInput name='search' placeholder={t('auditLogs.header.search.placeholder')} />
-            <ResetFormButton />
-            <MyButton type='submit'>
-              <i className='cil-zoom'></i>
-            </MyButton>
-          </div>
-        </Form>
-
+        <SearchForm />
         <div className='d-flex gap-2 ms-auto'>
           <MyButton variant='outline' onClick={() => openSettings()}>
             <i className='cil-settings'></i>

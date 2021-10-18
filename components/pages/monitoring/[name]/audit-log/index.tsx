@@ -38,13 +38,12 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
     await getDatabaseTables(String(router.query?.name));
   };
 
-  const getAuditLogsData = async (pagination: any, filters: any) => {
+  const getAuditLogsData = async (pagination: any, filters: any, OperationType: string = 'AND') => {
     setLoadingAuditLogsData(true);
     setErrorAuditLogsData(null);
     setAuditLogsData(null);
     const res = await getAuditLogsDataAPI({
-      OperationType: 'OR',
-
+      OperationType,
       pagination,
       filters: { ...filters, DatabaseName: router.query?.name },
       sort: ['CreateDate Desc'],
@@ -69,7 +68,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
   useEffect(() => {
     //   currentDatabasTables.data is success
     if (!!currentDatabasTables.data) {
-      getAuditLogsData(pagination, filters);
+      getAuditLogsData(pagination, filters, 'AND');
     }
   }, [currentDatabasTables.data]);
 
@@ -86,7 +85,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
   const handleChangePage = async (data: any) => {
     const newPagination = { ...pagination, pageNumber: Number(data.page) };
     setPagination(newPagination);
-    getAuditLogsData(newPagination, filters);
+    getAuditLogsData(newPagination, filters, 'AND');
   };
 
   const onRetryGetData = () => {
@@ -94,7 +93,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
     if (!!currentDatabasTables.data) {
       getAuditLogTablesData();
     } else {
-      getAuditLogsData(pagination, filters);
+      getAuditLogsData(pagination, filters, 'AND');
     }
   };
 
@@ -110,7 +109,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
       }
     });
     setFilters(data);
-    getAuditLogsData({ ...pagination, pageNumber: 1 }, data);
+    getAuditLogsData({ ...pagination, pageNumber: 1 }, data, 'AND');
   };
 
   const handleChangeSearch = async (data: any) => {
@@ -130,7 +129,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
       'requestNO',
     ];
     const newFilters: any = () => {
-      let tempObject: any = { ...filters };
+      let tempObject: any = {};
       if (data.search != '') {
         searchFiels.map((item) => {
           tempObject = { ...tempObject, [item]: data.search };
@@ -144,7 +143,7 @@ const AuditLogMonitoring: React.FC<AuditLogMonitoringProps> = () => {
     };
 
     setFilters(newFilters());
-    getAuditLogsData({ ...pagination, pageNumber: 1 }, newFilters());
+    getAuditLogsData({ ...pagination, pageNumber: 1 }, newFilters(), 'OR');
   };
   return (
     <div className=''>
