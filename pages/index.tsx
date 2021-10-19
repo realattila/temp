@@ -121,7 +121,7 @@ const Home = () => {
           </CCol>
 
           <CCol xs={12}>
-            <Link href={routes.dashboard.notification.sendSms()}>
+            <Link href={routes.dashboard.notification.showSmss()}>
               <a className='dashboard_page__link'>{t('logs.title')}</a>
             </Link>
           </CCol>
