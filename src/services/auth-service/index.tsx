@@ -71,7 +71,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, loadingCom
     if (!!token) {
       setLoading(false);
     } else {
-      AuthServiceInstance.login();
+      AuthServiceInstance.login({ state: window.location.href });
     }
   }, []);
 
@@ -136,12 +136,12 @@ export class AuthService {
     return this.userManager.getUser();
   }
 
-  public login(): Promise<void> {
-    return this.userManager.signinRedirect();
+  public login(args?: any): Promise<void> {
+    return this.userManager.signinRedirect(args);
   }
 
-  public renewToken(): Promise<User> {
-    return this.userManager.signinSilent();
+  public renewToken(args?: any): Promise<User> {
+    return this.userManager.signinSilent(args);
   }
 
   public logout(): Promise<void> {

@@ -8,14 +8,16 @@
     <h1>Authentification callback processing...</h1>
     <script src="oidc-client.min.js"></script>
     <script>
-      new Oidc.UserManager({ response_mode: "query" })
+      new Oidc.UserManager({ response_mode: 'query' })
         .signinRedirectCallback()
         .then(function (user) {
-          localStorage.setItem("token", user.access_token);
-          window.location = "/";
+          console.log('user', user);
+          localStorage.setItem('token', user.access_token);
+          window.history.replaceState({}, window.document.title, window.location.origin + window.location.pathname);
+          window.location = user.state || '/';
         })
         .catch(function (e) {
-          console.log("signin-callback.html page |", e);
+          console.log('signin-callback.html page |', e);
         });
     </script>
   </body>

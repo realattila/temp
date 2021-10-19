@@ -121,8 +121,9 @@ const API = async ({ withAuth = false, ...props }) => {
 
 const repeatReuest = async (_config: any) => {
   const AuthServiceInstance = new AuthService();
-  return await AuthServiceInstance.renewToken()
+  return await AuthServiceInstance.renewToken({ state: window.location.href })
     .then(async (user) => {
+      console.log('user', user);
       window.localStorage.setItem('token', user?.access_token);
       const res = await axiosApi({
         ..._config,

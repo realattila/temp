@@ -179,5 +179,5 @@ export default Home;
           </div>
           <div className='ball'></div>
         </div>
-      </div> */
+      </div>  */
 }
