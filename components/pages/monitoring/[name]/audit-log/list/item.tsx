@@ -8,6 +8,7 @@ import {
 } from '@coreui/react-pro';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import jalaliMoment from 'jalali-moment';
 
 interface AuditLogMonitoringListItemProps {
   status: {
@@ -85,7 +86,7 @@ const AuditLogMonitoringListItem: React.FC<AuditLogMonitoringListItemProps> = ({
                 <i className='cil-clock'></i>
                 <span>{t('auditLogs.list.item.actionDate')}</span>
               </div>
-              <div>{data?.actionDateTime}</div>
+              <div>{jalaliMoment(data?.actionDateTime).format('jYYYY/jM/jD HH:mm')}</div>
             </div>
           </div>
         </CAccordionButton>
