@@ -80,7 +80,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, loadingCom
       <div
         style={{
           width: '100%',
-          height: '100%',
+          height: '300px',
           background: '#fff',
           display: 'flex',
           alignItems: 'center',

@@ -1,5 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { CAvatar, CDropdown, CDropdownDivider, CDropdownItem, CDropdownMenu, CDropdownToggle } from '@coreui/react-pro';
+import {
+  CAvatar,
+  CDropdown,
+  CDropdownDivider,
+  CDropdownHeader,
+  CDropdownItem,
+  CDropdownMenu,
+  CDropdownToggle,
+} from '@coreui/react-pro';
 
 import images from 'public/images';
 import AuthContext, { AuthService } from 'services/auth-service';
@@ -29,6 +37,13 @@ const AppHeaderDropdown: React.FC = () => {
         <span>{userName}</span>
       </CDropdownToggle>
       <CDropdownMenu className='pt-0'>
+        <CDropdownHeader className='bg-light fw-semibold py-2 text-right'>تنظیمات</CDropdownHeader>
+
+        <CDropdownItem href={process.env.SSO_AUTHORITY} className='text-right d-flex align-items-center'>
+          <i className='cil-user me-2'></i>
+          حساب
+        </CDropdownItem>
+
         <CDropdownDivider />
         <CDropdownItem onClick={logoutUser} className='text-right cursor-pointer'>
           {t('header.avatar.menu.logout')}
