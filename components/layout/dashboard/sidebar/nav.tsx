@@ -57,6 +57,13 @@ const nav = (t: any): NavItem[] => {
       to: '/monitoring',
       items: [],
     },
+    {
+      key: 'workflowDesigner',
+      component: CNavItem,
+      name: t('sidebar.items.workflowDesigner'),
+      icon: <i className='cil-chart-show'></i>,
+      to: String(process.env.WORK_FLOW_DESIGNER_URL),
+    },
   ];
 };
 

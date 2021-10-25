@@ -10,6 +10,7 @@
       "monitoring": {
         "head": "رویدادنگار"
       },
+      "workflowDesigner": "طراحی گردش کار",
       "loading": "درحال بارگذاری ...",
       "error": {
         "title": "خطا در دریافت",
@@ -20,6 +21,12 @@
   "header": {
     "avatar": {
       "menu": {
+        "setting": {
+          "title": "تنظیمات",
+          "items": {
+            "account": "حساب"
+          }
+        },
         "logout": "خروج"
       }
     }

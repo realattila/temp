@@ -37,11 +37,13 @@ const AppHeaderDropdown: React.FC = () => {
         <span>{userName}</span>
       </CDropdownToggle>
       <CDropdownMenu className='pt-0'>
-        <CDropdownHeader className='bg-light fw-semibold py-2 text-right'>تنظیمات</CDropdownHeader>
+        <CDropdownHeader className='bg-light fw-semibold py-2 text-right'>
+          {t('header.avatar.menu.setting.title')}
+        </CDropdownHeader>
 
         <CDropdownItem href={process.env.SSO_AUTHORITY} className='text-right d-flex align-items-center'>
           <i className='cil-user me-2'></i>
-          حساب
+          {t('header.avatar.menu.setting.items.account')}
         </CDropdownItem>
 
         <CDropdownDivider />

@@ -11,13 +11,13 @@
       new Oidc.UserManager({ response_mode: 'query' })
         .signinRedirectCallback()
         .then(function (user) {
-          console.log('user', user);
+          // console.log('user', user);
           localStorage.setItem('token', user.access_token);
           window.history.replaceState({}, window.document.title, window.location.origin + window.location.pathname);
           window.location = user.state || '/';
         })
         .catch(function (e) {
-          console.log('signin-callback.html page |', e);
+          // console.log('signin-callback.html page |', e);
         });
     </script>
   </body>
