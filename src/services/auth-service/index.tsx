@@ -1,4 +1,4 @@
-import { User, UserManager } from 'oidc-client';
+import { User, UserManager, UserManagerEvents } from 'oidc-client';
 
 import React, { createContext, useEffect, useState } from 'react';
 
@@ -146,5 +146,8 @@ export class AuthService {
 
   public logout(): Promise<void> {
     return this.userManager.signoutRedirect();
+  }
+  public events(): UserManagerEvents {
+    return this.userManager.events;
   }
 }

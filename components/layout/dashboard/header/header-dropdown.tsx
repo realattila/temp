@@ -1,4 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { User } from 'oidc-client';
+
+import { AuthService } from 'services/auth-service';
+import { useTranslation } from 'react-i18next';
+
 import {
   CAvatar,
   CDropdown,
@@ -10,18 +15,28 @@ import {
 } from '@coreui/react-pro';
 
 import images from 'public/images';
-import AuthContext, { AuthService } from 'services/auth-service';
-import { useTranslation } from 'react-i18next';
 
 const AppHeaderDropdown: React.FC = () => {
   const { t } = useTranslation('layout_dashboard');
   const [userName, setUserName] = useState<string>('');
 
+  // get Usernmae
   useEffect(() => {
     const AuthServiceInstance = new AuthService();
+    window.onstorage = () => {
+      const token = window.localStorage.getItem('token');
+      if (!!token) {
+        AuthServiceInstance.getUser().then((user) => {
+          setUserName(user?.profile?.name || '');
+        });
+      }
+    };
     AuthServiceInstance.getUser().then((user) => {
       setUserName(user?.profile?.name || '');
     });
+    return () => {
+      window.onstorage = null;
+    };
   }, []);
 
   const logoutUser = () => {
