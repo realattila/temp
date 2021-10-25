@@ -151,12 +151,14 @@ const repeatReuest = async (_config: any, resolve: (value: unknown) => void, rej
         headers: { ..._config.headers, Authorization: `Bearer ${user?.access_token}` },
       });
       if (res.status === 401 || res.request.status === 401) {
+        window.localStorage.removeItem('token');
         AuthServiceInstance.login();
         return reject(res);
       }
       return resolve(res);
     })
     .catch((e) => {
+      window.localStorage.removeItem('token');
       AuthServiceInstance.login();
       return reject({ status: 500, hasError: true, errorText: SERVER_ERROR, errorStatus: 500 });
     });
