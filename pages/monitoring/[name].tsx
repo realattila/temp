@@ -8,7 +8,7 @@ import { AuthProvider } from 'services/auth-service';
 
 import SeoHead from 'components/common/seo-head';
 import DashboardLayout from 'components/layout/dashboard';
-import TabsMonitioring from 'components/pages/monitoring/[name]/tabs';
+// import TabsMonitioring from 'components/pages/monitoring/[name]/tabs';
 import AuditLogMonitoring from 'components/pages/monitoring/[name]/audit-log';
 
 const MonitoringName = () => {

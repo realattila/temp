@@ -51,13 +51,17 @@ const ShowSmsDashboard = () => {
     setApiLoading(true);
     setApiError(null);
     setApiData(null);
-    if (!filters.showDateInFilter) {
-      delete filters.CreateDate;
+
+    const newFilters = { ...filters };
+
+    if (!newFilters.showDateInFilter) {
+      delete newFilters.CreateDate;
     }
-    delete filters.showDateInFilter;
+    delete newFilters.showDateInFilter;
+
     const res = await getLogSmssNotificationAPI({
       pagination,
-      filters,
+      filters: newFilters,
       sort: ['CreateDate Desc'],
     });
 
@@ -79,6 +83,7 @@ const ShowSmsDashboard = () => {
   const handleChangePage = async (data: any) => {
     const newPagination = { ...pagination, pageNumber: Number(data.page) };
     setPagination(newPagination);
+
     getLogs(newPagination, filters);
   };
 
@@ -88,6 +93,7 @@ const ShowSmsDashboard = () => {
         delete data[item];
       }
     });
+
     setFilters(data);
     getLogs({ ...pagination, pageNumber: 1 }, data);
   };

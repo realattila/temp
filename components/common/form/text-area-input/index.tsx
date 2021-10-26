@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useFormContext, Controller, RegisterOptions } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
 import { CFormFeedback, CFormLabel, CFormTextarea } from '@coreui/react-pro';
@@ -32,6 +33,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   const { t } = useTranslation('form');
 
   const { control } = useFormContext();
+
   return (
     <Controller
       name={name}
@@ -69,4 +71,4 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   );
 };
 
-export default TextAreaInput;
+export default memo(TextAreaInput);

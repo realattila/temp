@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { memo, MouseEventHandler } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CButton, CSpinner } from '@coreui/react-pro';
@@ -36,4 +36,4 @@ const LoadingSession: React.FC<LoadingSessionProps> = ({ loading, error, data = 
     <>{children}</>
   );
 };
-export default LoadingSession;
+export default memo(LoadingSession);

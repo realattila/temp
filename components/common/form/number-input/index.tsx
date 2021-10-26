@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Controller, RegisterOptions, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
 import { CFormFeedback, CFormInput, CFormLabel } from '@coreui/react-pro';
@@ -35,6 +36,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
   const { t } = useTranslation('form');
 
   const { control } = useFormContext();
+
   return (
     <Controller
       name={name}
@@ -78,4 +80,4 @@ const NumberInput: React.FC<NumberInputProps> = ({
   );
 };
 
-export default NumberInput;
+export default memo(NumberInput);

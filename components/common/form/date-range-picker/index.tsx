@@ -1,7 +1,7 @@
+import { memo, useRef } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import moment from 'jalali-moment';
 import { RangeDatePicker } from 'jalali-react-datepicker';
-import { useRef } from 'react';
 
 interface DateRangePickerInputProps {
   name: string;
@@ -21,6 +21,7 @@ const DateRangePickerInput: React.FC<DateRangePickerInputProps> = ({
 }) => {
   const { control } = useFormContext();
   const pickerRef = useRef<any>(null);
+
   const toggleOpenDatePickerModal = () => {
     pickerRef.current?.toggleModalOpen();
   };
@@ -30,7 +31,7 @@ const DateRangePickerInput: React.FC<DateRangePickerInputProps> = ({
       name={name}
       defaultValue={defaultValue}
       control={control}
-      render={({ field: { name, value, onChange } }) => {
+      render={({ field: { value, onChange } }) => {
         return (
           <div>
             <div className='date-range-picker-input'>
@@ -57,4 +58,4 @@ const DateRangePickerInput: React.FC<DateRangePickerInputProps> = ({
     />
   );
 };
-export default DateRangePickerInput;
+export default memo(DateRangePickerInput);

@@ -1,5 +1,6 @@
+import { memo, useState } from 'react';
+
 import TextInput, { TextInputProps } from 'components/common/form/text-input';
-import { useState } from 'react';
 
 interface PasswordInputProps extends TextInputProps {}
 
@@ -28,4 +29,4 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ type, showLabel, ...props
   );
 };
 
-export default PasswordInput;
+export default memo(PasswordInput);

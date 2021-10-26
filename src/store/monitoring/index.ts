@@ -29,7 +29,7 @@ export const monitroingSlice = createSlice({
       state.databases = { ...state.databases, data: null, loading: false, isDone: true, error: action.payload };
     },
     requestToGetDabases: (state) => {
-      return state;
+      state.databases = { ...state.databases, data: null, loading: true, isDone: false, error: null };
     },
   },
 });

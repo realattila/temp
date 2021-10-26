@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useFormContext, Controller, RegisterOptions } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
 
@@ -15,8 +16,6 @@ export interface TextInputProps {
   showLabel?: boolean;
   disabled?: boolean;
   className?: string;
-  min?: number;
-  max?: number;
   customChild?: JSX.Element;
 }
 
@@ -32,8 +31,7 @@ const TextInput: React.FC<TextInputProps> = ({
   showLabel = false,
   disabled = false,
   className = '',
-  min,
-  max,
+
   customChild = <></>,
 }) => {
   const { t } = useTranslation('form');
@@ -79,4 +77,4 @@ const TextInput: React.FC<TextInputProps> = ({
   );
 };
 
-export default TextInput;
+export default memo(TextInput);

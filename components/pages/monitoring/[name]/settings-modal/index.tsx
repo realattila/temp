@@ -1,16 +1,15 @@
 import { CAlert, CLoadingButton, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from '@coreui/react-pro';
 import { memo, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 
 import randomIntNumber from 'utility/random-int-number';
 import { addAuditLogDatabasesTableAPI, removeAuditLogDatabaseTablesAPI } from 'services/api/monitoring';
-
+import { useAppSelector } from 'src/hook/store';
 import MonitroingContext from 'store/context/monitoring';
 
 import MyButton from 'components/common/my-button';
 import AddTableToDatabaseMonitoring from 'components/pages/monitoring/[name]/settings-modal/add-table';
-import { useAppSelector } from 'src/hook/store';
-import { useRouter } from 'next/router';
 
 interface SettingsModalMonitoringProps {
   show: boolean;

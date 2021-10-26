@@ -4,7 +4,7 @@ import Pagination from 'components/common/pagination';
 import { paginationType } from 'types/pagination';
 import randomIntNumber from 'utility/random-int-number';
 
-import AuditLogMonitoringListItem from './item';
+import AuditLogMonitoringListItem from 'components/pages/monitoring/[name]/audit-log/list/item';
 
 interface AuditLogMonitoringListProps {
   data: any;
@@ -13,8 +13,8 @@ interface AuditLogMonitoringListProps {
 }
 
 const AuditLogMonitoringList: React.FC<AuditLogMonitoringListProps> = ({ data, handleChangePage, pagination }) => {
-  const RenderItems = () =>
-    (data?.items || []).map((item: any) => {
+  const RenderItems = () => {
+    return (data?.items || []).map((item: any) => {
       const statusType = () => {
         switch (String(item?.actionType).toLowerCase()) {
           case 'update':
@@ -25,6 +25,7 @@ const AuditLogMonitoringList: React.FC<AuditLogMonitoringListProps> = ({ data, h
             return 'primary';
         }
       };
+
       return (
         <AuditLogMonitoringListItem
           data={item}
@@ -33,6 +34,7 @@ const AuditLogMonitoringList: React.FC<AuditLogMonitoringListProps> = ({ data, h
         />
       );
     });
+  };
 
   return (
     <div className='d-flex flex-column gap-4'>

@@ -1,4 +1,6 @@
+import { memo } from 'react';
 import { useTranslation } from 'next-i18next';
+
 import NumberInput, { NumberInputProps } from 'components/common/form/number-input';
 
 interface PhoneNumberInputProps extends NumberInputProps {}
@@ -35,4 +37,4 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   );
 };
 
-export default PhoneNumberInput;
+export default memo(PhoneNumberInput);

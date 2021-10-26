@@ -77,7 +77,6 @@ const AppSidebar = () => {
 
   const monitoringList = monitoringListItem(t, dispatch, getMonitoringList, monitroingDatabases);
 
-  useEffect(() => {}, []);
   useEffect(() => {
     const breakPoint = String(window.getComputedStyle(document.body, ':before').content);
     if (breakPoint != '"xs"' && breakPoint != '"sm"' && breakPoint != '"md"' && breakPoint != '"lg"') {

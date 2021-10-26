@@ -4,14 +4,14 @@ import { memo, useContext, useEffect, useState } from 'react';
 
 import withContext from 'src/hoc/with-context';
 import MonitoringContextContainer from 'store/context/monitoring/container';
-import { getAuditLogsDataAPI, getAuditLogDatabaseTablesAPI } from 'services/api/monitoring';
+import { getAuditLogsDataAPI } from 'services/api/monitoring';
 import MonitroingContext from 'store/context/monitoring';
 
-import SettingsModalMonitoring from '../settings-modal';
-import AuditLogHeadingMonitioring from './header';
+import SettingsModalMonitoring from 'components/pages/monitoring/[name]/settings-modal/index';
+import AuditLogHeadingMonitioring from 'components/pages/monitoring/[name]/audit-log/header/index';
+import AuditLogMonitoringList from 'components/pages/monitoring/[name]/audit-log/list/index';
 
 import { paginationType } from 'types/pagination';
-import AuditLogMonitoringList from './list';
 
 interface AuditLogMonitoringProps {}
 

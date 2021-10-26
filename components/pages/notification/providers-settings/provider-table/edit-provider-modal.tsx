@@ -11,6 +11,7 @@ interface EditProviderModalNotificationProps {
   data?: any;
   getProviders?: any;
 }
+
 const EditProviderModalNotification: React.FC<EditProviderModalNotificationProps> = ({
   show,
   onHide,
@@ -18,7 +19,9 @@ const EditProviderModalNotification: React.FC<EditProviderModalNotificationProps
   getProviders,
 }) => {
   const { t } = useTranslation('pages_notification_providers-setting');
+
   const [apiLoading, setApiLoading] = useState<boolean>(false);
+
   const [apiError, setApiError] = useState<any>(null);
 
   const handleSubmitForm = async (formDataSubmit: any) => {
@@ -34,6 +37,7 @@ const EditProviderModalNotification: React.FC<EditProviderModalNotificationProps
       setApiLoading(false);
     }
   };
+
   return (
     <CModal size='lg' visible={show} alignment='center' onDismiss={() => onHide(false)}>
       <CModalHeader onDismiss={() => onHide()}>

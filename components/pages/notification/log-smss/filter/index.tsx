@@ -22,7 +22,7 @@ const FilterLogsSmssTableNotification: React.FC<FilterLogsSmssTableNotificationP
 }) => {
   const { t } = useTranslation('pages_notification_show-smss');
 
-  const { watch, reset, handleSubmit, setValue } = useFormContext();
+  const { watch, reset, handleSubmit } = useFormContext();
 
   let providersList: Array<any> = [];
 

@@ -6,6 +6,7 @@ import DashboardStatusCard from 'components/pages/dashboard/dashboard_status/das
 interface DashboardStatusListProps {
   data: any;
 }
+
 const DashboardStatusList: React.FC<DashboardStatusListProps> = ({ data }) => {
   const { t } = useTranslation('page_dashboard');
   return (

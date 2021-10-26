@@ -9,7 +9,9 @@ const TabsMonitioring: React.FC<TabsMonitioringProps> = ({ selectedTabState }) =
   const handleChangeTab = (value: string) => {
     setSeletectTab(value);
   };
+
   const { t } = useTranslation('pages_monitoring_[name]');
+
   return (
     <div className='monitoring-name__tabs'>
       <div className='d-flex gap-5'>

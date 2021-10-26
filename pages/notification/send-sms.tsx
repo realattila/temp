@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
 import { CCol, CContainer, CRow } from '@coreui/react-pro';

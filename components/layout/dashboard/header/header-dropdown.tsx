@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { User } from 'oidc-client';
 
-import { AuthService } from 'services/auth-service';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -14,6 +12,8 @@ import {
   CDropdownToggle,
 } from '@coreui/react-pro';
 
+import { AuthService } from 'services/auth-service';
+
 import images from 'public/images';
 
 const AppHeaderDropdown: React.FC = () => {
@@ -23,6 +23,8 @@ const AppHeaderDropdown: React.FC = () => {
   // get Usernmae
   useEffect(() => {
     const AuthServiceInstance = new AuthService();
+
+    // on change localstroge
     window.onstorage = () => {
       const token = window.localStorage.getItem('token');
       if (!!token) {
@@ -45,6 +47,7 @@ const AppHeaderDropdown: React.FC = () => {
       window.localStorage.removeItem('token');
     });
   };
+
   return (
     <CDropdown variant='nav-item' alignment='end'>
       <CDropdownToggle className='py-0 d-flex gap-2 align-items-center' caret={false}>

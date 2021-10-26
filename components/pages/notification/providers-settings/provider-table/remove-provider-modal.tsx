@@ -10,6 +10,7 @@ interface RemoveProviderModalNotificationProps {
   data?: any;
   getProviders?: any;
 }
+
 const RemoveProviderModalNotification: React.FC<RemoveProviderModalNotificationProps> = ({
   onHide,
   show,
@@ -26,6 +27,7 @@ const RemoveProviderModalNotification: React.FC<RemoveProviderModalNotificationP
     setApiLoading(false);
 
     const formData: FormData = new FormData();
+
     formData.append('guid', data.guid);
 
     const res = await removeProvderNotificationAPI(formData);

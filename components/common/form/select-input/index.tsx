@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { CFormFeedback, CFormLabel, CFormSelect } from '@coreui/react-pro';
 
 import randomIntNumber from 'utility/random-int-number';
-import { CFormFeedback, CFormLabel, CFormSelect } from '@coreui/react-pro';
 
 interface SelectInputProps {
   list: Array<{
@@ -16,6 +17,7 @@ interface SelectInputProps {
   required?: boolean;
   disabled?: boolean;
 }
+
 const SelectInput: React.FC<SelectInputProps> = ({
   list,
   name,
@@ -27,6 +29,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
 }) => {
   const { control } = useFormContext();
   const { t } = useTranslation('form');
+
   return (
     <Controller
       control={control}
@@ -45,34 +48,41 @@ const SelectInput: React.FC<SelectInputProps> = ({
           }
         },
       }}
-      render={({ field: { value, onChange }, fieldState: { invalid, error } }) => (
-        <div>
-          {showLabel && <CFormLabel htmlFor={`selecte-input_${name}`}>{label || name}</CFormLabel>}
+      render={({ field: { value, onChange }, fieldState: { invalid, error } }) => {
+        const onChnageInput = (e: any) => {
+          if (!!e) {
+            onChange(e);
+          }
+        };
 
-          <CFormSelect
-            aria-label='Default select example'
-            id={`selecte-input_${name}`}
-            onChange={(e) => {
-              if (!!e) {
-                onChange(e);
-              }
-            }}
-            value={value}
-            invalid={invalid}
-            disabled={disabled}
-          >
-            <option value='-1'>{showLabel ? '' : label}</option>
-            {(list || []).map((item) => (
-              <option key={randomIntNumber()} value={item.value}>
-                {item.label || item.value}
-              </option>
-            ))}
-          </CFormSelect>
-          <CFormFeedback invalid={invalid}>{error?.message}</CFormFeedback>
-        </div>
-      )}
+        const RenderList = () =>
+          (list || []).map((item) => (
+            <option key={randomIntNumber()} value={item.value}>
+              {item.label || item.value}
+            </option>
+          ));
+
+        return (
+          <div>
+            {showLabel && <CFormLabel htmlFor={`selecte-input_${name}`}>{label || name}</CFormLabel>}
+
+            <CFormSelect
+              aria-label='Default select example'
+              id={`selecte-input_${name}`}
+              onChange={onChnageInput}
+              value={value}
+              invalid={invalid}
+              disabled={disabled}
+            >
+              <option value='-1'>{showLabel ? '' : label}</option>
+              {RenderList()}
+            </CFormSelect>
+            <CFormFeedback invalid={invalid}>{error?.message}</CFormFeedback>
+          </div>
+        );
+      }}
     />
   );
 };
 
-export default SelectInput;
+export default memo(SelectInput);

@@ -99,7 +99,7 @@ const SendSmsNotificationForm: React.FC<SendSmsNotificationFormProps> = ({ provi
               {t('form.success')}
             </CAlert>
           )}
-          {!!sendSmsError && <ErrorInApiAlert className='mt-2'>{sendSmsError}</ErrorInApiAlert>}
+          {!!sendSmsError && <ErrorInApiAlert className='mt-2'>{<>{sendSmsError}</>}</ErrorInApiAlert>}
         </div>
       </Form>
     </div>

@@ -1,5 +1,6 @@
-import { CFormFeedback, CFormSwitch } from '@coreui/react-pro';
+import { memo } from 'react';
 import { useFormContext, Controller, RegisterOptions } from 'react-hook-form';
+import { CFormFeedback, CFormSwitch } from '@coreui/react-pro';
 
 interface SwitchInput {
   label: string;
@@ -11,8 +12,9 @@ interface SwitchInput {
   id?: string;
 }
 
-const SwitchInput: React.FC<SwitchInput> = ({ label = '', name = '', defaultValue = false, rules = {}, id }) => {
+const SwitchInput: React.FC<SwitchInput> = ({ label = '', name = '', defaultValue = false, rules = {} }) => {
   const { control } = useFormContext();
+
   return (
     <Controller
       name={name}
@@ -39,4 +41,4 @@ const SwitchInput: React.FC<SwitchInput> = ({ label = '', name = '', defaultValu
   );
 };
 
-export default SwitchInput;
+export default memo(SwitchInput);

@@ -5,6 +5,7 @@ interface DashboardStatusCardProps {
     value: string | number;
   };
 }
+
 const DashboardStatusCard: React.FC<DashboardStatusCardProps> = ({ color, data }) => {
   return (
     <div className={`shadow dashboard_page__status_card dashboard_page__status_card--${color}`}>

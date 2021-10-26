@@ -9,7 +9,9 @@ interface AddProviderNotificationProps {
 
 const AddProviderNotification: React.FC<AddProviderNotificationProps> = ({ getProviders }) => {
   const { t } = useTranslation('pages_notification_providers-setting');
+
   const [toggleModal, setToggleModal] = useState<boolean>(false);
+
   const handleToggleModal = (value: boolean) => setToggleModal(value);
 
   return (

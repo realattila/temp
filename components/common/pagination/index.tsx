@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import Form from 'components/common/form';
 import NumberInput from 'components/common/form/number-input';
 import { CButton } from '@coreui/react-pro';
+
 import { paginationType } from 'types/pagination';
 
 export interface PaginationProps {
@@ -30,7 +31,9 @@ const Pagination: React.FC<PaginationProps> = ({ pagination, handleChangePage })
     useEffect(() => {
       setValue('page', pagination.pageNumber);
     }, [pagination]);
+
     const { setValue } = useFormContext();
+
     return (
       <div style={{ minWidth: '100px' }}>
         <NumberInput
