@@ -47,7 +47,7 @@ const AdvancedSearchHeaderAuditMonitoring: React.FC<AdvancedSearchHeaderAuditMon
 
     return (
       <>
-        <CCol xxl={2} xl={2} lg={2} md={6} sm={6} xs={12} className='d-flex align-self-end mb-2'>
+        <CCol xxl={2} xl={2} lg={3} md={6} sm={6} xs={12} className='d-flex align-self-end mb-2'>
           <SwitchInput name='showDateInFilter' label={t('auditLogs.header.advancedSearch.showDateInFilter.label')} />
         </CCol>
 
