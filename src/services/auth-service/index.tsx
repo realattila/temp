@@ -150,4 +150,8 @@ export class AuthService {
   public events(): UserManagerEvents {
     return this.userManager.events;
   }
+
+  public removeUser(): Promise<void> {
+    return this.userManager.removeUser();
+  }
 }

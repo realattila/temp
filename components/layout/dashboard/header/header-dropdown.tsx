@@ -24,21 +24,26 @@ const AppHeaderDropdown: React.FC = () => {
   useEffect(() => {
     const AuthServiceInstance = new AuthService();
 
-    // on change localstroge
-    window.onstorage = () => {
-      const token = window.localStorage.getItem('token');
-      if (!!token) {
-        AuthServiceInstance.getUser().then((user) => {
-          setUserName(user?.profile?.name || '');
-        });
-      }
-    };
-    AuthServiceInstance.getUser().then((user) => {
-      setUserName(user?.profile?.name || '');
-    });
-    return () => {
-      window.onstorage = null;
-    };
+    AuthServiceInstance.getUser()
+      .then((user) => {
+        if (!user) {
+          AuthServiceInstance.renewToken()
+            .then((userFormreNew) => {
+              setUserName(userFormreNew?.profile?.name || '');
+            })
+            .catch((e) => AuthServiceInstance.logout());
+        }
+        setUserName(user?.profile?.name || '');
+      })
+      .catch((e) => {
+        AuthServiceInstance.removeUser()
+          .then(() => {
+            AuthServiceInstance.renewToken();
+          })
+          .catch((e) => {
+            AuthServiceInstance.logout();
+          });
+      });
   }, []);
 
   const logoutUser = () => {
