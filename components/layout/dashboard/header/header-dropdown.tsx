@@ -31,14 +31,18 @@ const AppHeaderDropdown: React.FC = () => {
             .then((userFormreNew) => {
               setUserName(userFormreNew?.profile?.name || '');
             })
-            .catch((e) => AuthServiceInstance.logout());
+            .catch((e) => AuthServiceInstance.login());
         }
         setUserName(user?.profile?.name || '');
       })
       .catch((e) => {
         AuthServiceInstance.removeUser()
           .then(() => {
-            AuthServiceInstance.renewToken();
+            AuthServiceInstance.renewToken()
+              .then((userFormreNew) => {
+                setUserName(userFormreNew?.profile?.name || '');
+              })
+              .catch((e) => AuthServiceInstance.login());
           })
           .catch((e) => {
             AuthServiceInstance.logout();
