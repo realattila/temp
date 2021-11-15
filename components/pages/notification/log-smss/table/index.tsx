@@ -50,7 +50,7 @@ const LogsSmsTableNotification: React.FC<LogsSmsTableNotificationProps> = ({
 
   return (
     <>
-      <div>
+      <div data-testid='custom-element'>
         <div className='bg-white p-4 shadow-sm mb-4'>
           <CTable bordered responsive='xxl'>
             <CTableHead>
@@ -63,14 +63,18 @@ const LogsSmsTableNotification: React.FC<LogsSmsTableNotificationProps> = ({
             <CTableBody>
               {(data.items || []).map((item: any) => {
                 return (
-                  <CTableRow key={randomIntNumber()}>
+                  <CTableRow key={randomIntNumber()} data-testid={item?.id}>
                     <CTableDataCell>{item?.id}</CTableDataCell>
                     <CTableDataCell>{item?.requesterName}</CTableDataCell>
                     <CTableDataCell>{item?.recipient}</CTableDataCell>
                     <CTableDataCell>{item?.status}</CTableDataCell>
                     <CTableDataCell>{item?.createDateFa}</CTableDataCell>
                     <CTableDataCell>
-                      <CButton variant='outline' onClick={() => handleOpenDetailsModal(item)}>
+                      <CButton
+                        variant='outline'
+                        onClick={() => handleOpenDetailsModal(item)}
+                        data-testid={`button_${item?.id}`}
+                      >
                         <i className='cil-info'></i>
                       </CButton>
                     </CTableDataCell>

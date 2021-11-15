@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "test": "jest --watch",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "@coreui/coreui-pro": "4.0.1",
@@ -42,12 +43,21 @@
     "zipcelx": "^1.6.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "12.0.0",
+    "@testing-library/user-event": "13.2.1",
     "@types/react": "17.0.24",
     "@types/react-router-dom": "^5.1.8",
     "@types/zipcelx": "^1.5.0",
     "auto-changelog": "~2.3.0",
+    "babel-jest": "27.0.6",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
+    "eslint-plugin-testing-library": "4.11.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "27.0.6",
+    "jest-environment-jsdom": "^27.3.1",
+    "react-test-renderer": "17.0.2",
     "sass": "^1.42.1",
     "typescript": "4.4.3"
   }
