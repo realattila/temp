@@ -23,6 +23,13 @@ export type NavItem = {
 const nav = (t: any): NavItem[] => {
   return [
     {
+      key: 'home',
+      component: CNavItem,
+      name: t('sidebar.items.home'),
+      icon: <i className='cil-home'></i>,
+      to: '/',
+    },
+    {
       key: 'notification',
       component: CNavGroup,
       name: t('sidebar.items.notification.head'),
@@ -63,6 +70,33 @@ const nav = (t: any): NavItem[] => {
       name: t('sidebar.items.workflowDesigner'),
       icon: <i className='cil-chart-show'></i>,
       to: String(process.env.WORK_FLOW_DESIGNER_URL),
+    },
+    {
+      key: 'SSO',
+      component: CNavGroup,
+      name: t('sidebar.items.sso.head'),
+      icon: <i className='cil-shield'></i>,
+      to: `${process.env.SSO_ADMIN}/`,
+      items: [
+        {
+          component: CNavItem,
+          name: t('sidebar.items.sso.users'),
+          icon: <i className='cil-user'></i>,
+          to: `${process.env.SSO_ADMIN}/Identity/Users/`,
+        },
+        {
+          component: CNavItem,
+          name: t('sidebar.items.sso.clients'),
+          icon: <i className='cil-monitor'></i>,
+          to: `${process.env.SSO_ADMIN}/Configuration/Clients/`,
+        },
+        {
+          component: CNavItem,
+          name: t('sidebar.items.sso.roles'),
+          icon: <i className='cil-lock-locked '></i>,
+          to: `${process.env.SSO_ADMIN}/Identity/Roles/`,
+        },
+      ],
     },
   ];
 };
