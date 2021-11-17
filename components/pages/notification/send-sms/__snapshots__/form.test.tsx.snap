@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test notification send sms Form test send sms 1`] = `
+<div
+  className="bg-white p-4"
+>
+  <form
+    className=""
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <div
+      className="d-flex flex-column gap-2"
+    >
+      <div>
+        <label
+          className="form-label"
+          htmlFor="selecte-input_providerName"
+        >
+          form.provider.label
+        </label>
+        <select
+          aria-label="Default select example"
+          className="form-select"
+          disabled={false}
+          id="selecte-input_providerName"
+          onChange={[Function]}
+          value="-1"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <option
+            value={1}
+          >
+            1
+          </option>
+          <option
+            value={2}
+          >
+            2
+          </option>
+        </select>
+        <div
+          className=""
+        />
+      </div>
+      <div
+        className="form-input-group"
+      >
+        <label
+          className="form-label"
+          htmlFor="text-input_Recipient"
+        >
+          form.phone.label
+        </label>
+        <input
+          className="form-control  false"
+          disabled={false}
+          id="text-input_Recipient"
+          onChange={[Function]}
+          placeholder="form.phone.placeholder"
+          required={false}
+          type="text"
+          value=""
+        />
+        <div
+          className=""
+        />
+      </div>
+      <div>
+        <label
+          className="form-label"
+          htmlFor="text-area-input_Body"
+        >
+          form.body.label
+        </label>
+        <textarea
+          className="form-control"
+          disabled={false}
+          id="text-area-input_Body"
+          onChange={[Function]}
+          placeholder="form.body.placeholder"
+          value=""
+        />
+        <div
+          className=""
+        />
+      </div>
+      <button
+        className="btn btn-primary btn-loading mt-4"
+        disabled={false}
+        onClick={[Function]}
+        type="submit"
+      >
+        <div
+          className="spinner-border text-undefined spinner-border-sm btn-loading-spinner"
+          role="status"
+        >
+          <span
+            className="visually-hidden"
+          >
+            Loading...
+          </span>
+        </div>
+        form.submit
+      </button>
+    </div>
+  </form>
+</div>
+`;
