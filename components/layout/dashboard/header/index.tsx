@@ -5,7 +5,11 @@ import { toggleAsideDashboard } from 'store/dashboard';
 
 import AppHeaderDropdown from 'components/layout/dashboard/header/header-dropdown';
 
-const AppHeader = (): JSX.Element => {
+type props = {
+  userToken: any;
+};
+
+const AppHeader = ({ userToken }: props): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleToggleAside = () => {
@@ -20,7 +24,7 @@ const AppHeader = (): JSX.Element => {
         <CHeaderBrand className='mx-auto d-md-none'></CHeaderBrand>
         <CHeaderNav className='d-none d-md-flex me-auto'></CHeaderNav>
         <CHeaderNav className='ms-3 me-4'>
-          <AppHeaderDropdown />
+          <AppHeaderDropdown userToken={userToken} />
         </CHeaderNav>
       </CContainer>
     </CHeader>

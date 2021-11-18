@@ -22,6 +22,7 @@ module.exports = {
     SSO_SCOPE: process.env.SSO_SCOPE,
     API_BASE_URL_MONITORING_SERVICE: process.env.API_BASE_URL_MONITORING_SERVICE,
     WORK_FLOW_DESIGNER_URL: process.env.WORK_FLOW_DESIGNER_URL,
+    SSO_ADMIN_ROLE_NAME: process.env.SSO_ADMIN_ROLE_NAME,
   },
   webpack(config, options) {
     config.resolve.alias = {

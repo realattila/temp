@@ -1,6 +1,7 @@
 import { User, UserManager, UserManagerEvents } from 'oidc-client';
-
 import React, { createContext, useEffect, useState } from 'react';
+
+import useMounted from 'src/hoc/use-mounted';
 
 interface AuthContext {
   getUser: () => Promise<User | null>;
@@ -34,6 +35,8 @@ interface AuthProviderProps {
   loadingCompoent?: JSX.Element;
 }
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children, loadingCompoent = null }) => {
+  const isMounted = useMounted();
+
   const [loading, setLoading] = useState<boolean>(true);
   const [methods, setMethods] = useState<any>({
     getUser: (): Promise<User | null> => {
@@ -56,24 +59,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, loadingCom
 
   useEffect(() => {
     const AuthServiceInstance = new AuthService();
-    setMethods({
-      getUser: () => AuthServiceInstance.getUser(),
-      login: () => AuthServiceInstance.login(),
-      renewToken: () => AuthServiceInstance.renewToken(),
-      logout: () =>
-        AuthServiceInstance.logout().then((param) => {
-          window.localStorage.clear();
-          return param;
-        }),
-    });
+    if (isMounted()) {
+      setMethods({
+        getUser: () => AuthServiceInstance.getUser(),
+        login: () => AuthServiceInstance.login(),
+        renewToken: () => AuthServiceInstance.renewToken(),
+        logout: () =>
+          AuthServiceInstance.logout().then((param) => {
+            window.localStorage.clear();
+            return param;
+          }),
+      });
+    }
 
     const token = window.localStorage.getItem('token');
     if (!!token) {
-      setLoading(false);
+      if (isMounted()) {
+        setLoading(false);
+      }
     } else {
       AuthServiceInstance.login({ state: window.location.href });
     }
-  }, []);
+  }, [isMounted()]);
 
   if (loading) {
     return !loadingCompoent ? (

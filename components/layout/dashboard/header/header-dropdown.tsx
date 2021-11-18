@@ -16,39 +16,12 @@ import { AuthService } from 'services/auth-service';
 
 import images from 'public/images';
 
-const AppHeaderDropdown: React.FC = () => {
+type props = {
+  userToken: any;
+};
+
+const AppHeaderDropdown: React.FC<props> = ({ userToken }) => {
   const { t } = useTranslation('layout_dashboard');
-  const [userName, setUserName] = useState<string>('');
-
-  // get Usernmae
-  useEffect(() => {
-    const AuthServiceInstance = new AuthService();
-
-    AuthServiceInstance.getUser()
-      .then((user) => {
-        if (!user) {
-          AuthServiceInstance.renewToken()
-            .then((userFormreNew) => {
-              setUserName(userFormreNew?.profile?.name || '');
-            })
-            .catch((e) => AuthServiceInstance.login());
-        }
-        setUserName(user?.profile?.name || '');
-      })
-      .catch((e) => {
-        AuthServiceInstance.removeUser()
-          .then(() => {
-            AuthServiceInstance.renewToken()
-              .then((userFormreNew) => {
-                setUserName(userFormreNew?.profile?.name || '');
-              })
-              .catch((e) => AuthServiceInstance.login());
-          })
-          .catch((e) => {
-            AuthServiceInstance.logout();
-          });
-      });
-  }, []);
 
   const logoutUser = () => {
     const AuthServiceInstance = new AuthService();
@@ -61,7 +34,7 @@ const AppHeaderDropdown: React.FC = () => {
     <CDropdown variant='nav-item' alignment='end'>
       <CDropdownToggle className='py-0 d-flex gap-2 align-items-center' caret={false}>
         <CAvatar src={images.public.avatar.src} size='md' />
-        <span>{userName}</span>
+        <span>{userToken?.profile?.name || ''}</span>
       </CDropdownToggle>
       <CDropdownMenu className='pt-0'>
         <CDropdownHeader className='bg-light fw-semibold py-2 text-right'>
