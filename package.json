@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@coreui/coreui-pro": "4.0.1",
@@ -53,6 +55,7 @@
     "@types/zipcelx": "^1.5.0",
     "auto-changelog": "~2.3.0",
     "babel-jest": "27.0.6",
+    "cypress": "^9.0.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-plugin-testing-library": "4.11.0",
