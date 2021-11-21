@@ -17,6 +17,7 @@
     "@coreui/icons-react": "2.0.0-rc.5",
     "@coreui/react": "^4.0.0-rc.1",
     "@coreui/react-pro": "4.0.0-rc.0",
+    "@cypress/react": "^5.10.3",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
