@@ -8,8 +8,9 @@
     "start": "next start",
     "test": "jest --watch",
     "test:ci": "jest --ci",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -s public/",
+    "serve-storybook": "serve storybook-static"
   },
   "dependencies": {
     "@coreui/coreui-pro": "4.0.1",
@@ -17,7 +18,6 @@
     "@coreui/icons-react": "2.0.0-rc.5",
     "@coreui/react": "^4.0.0-rc.1",
     "@coreui/react-pro": "4.0.0-rc.0",
-    "@cypress/react": "^5.10.3",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -47,6 +47,9 @@
     "zipcelx": "^1.6.2"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/react": "^6.3.12",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",
     "@testing-library/user-event": "13.2.1",
@@ -56,7 +59,6 @@
     "@types/zipcelx": "^1.5.0",
     "auto-changelog": "~2.3.0",
     "babel-jest": "27.0.6",
-    "cypress": "^9.0.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-plugin-testing-library": "4.11.0",
