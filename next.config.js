@@ -33,6 +33,7 @@ module.exports = {
       types: path.join(__dirname, './src/types'),
       hooks: path.join(__dirname, './src/hooks'),
       store: path.join(__dirname, './src/store'),
+      hoc: path.join(__dirname, './src/hoc'),
       styles: path.join(__dirname, './styles'),
       images: path.join(__dirname, './public/images'),
       public: path.join(__dirname, './public'),

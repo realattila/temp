@@ -22,6 +22,7 @@
       "types/*": ["src/types/*"],
       "hooks/*": ["src/hooks/*"],
       "store/*": ["src/store/*"],
+      "hoc/*": ["src/hoc/*"],
       "styles/*": ["styles/*"],
       "images/*": ["public/images/*"],
       "public/*": ["public/*"]

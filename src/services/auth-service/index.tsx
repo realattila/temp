@@ -1,7 +1,7 @@
 import { User, UserManager, UserManagerEvents } from 'oidc-client';
 import React, { createContext, useEffect, useState } from 'react';
 
-import useMounted from 'src/hoc/use-mounted';
+import useMounted from 'hoc/use-mounted';
 
 interface AuthContext {
   getUser: () => Promise<User | null>;
