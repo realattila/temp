@@ -23,7 +23,7 @@ export type NavItem = {
 const nav = (t: any): NavItem[] => {
   return [
     {
-      key: 'home',
+      key: 'HOME_PAGE',
       component: CNavItem,
       name: t('sidebar.items.home'),
       icon: <i className='cil-home'></i>,
