@@ -30,7 +30,7 @@ const nav = (t: any): NavItem[] => {
       to: '/',
     },
     {
-      key: 'notification',
+      key: 'SMS_PROVIDER',
       component: CNavGroup,
       name: t('sidebar.items.notification.head'),
       icon: <i className='cil-bell'></i>,
@@ -57,7 +57,7 @@ const nav = (t: any): NavItem[] => {
       ],
     },
     {
-      key: 'monitoring',
+      key: 'AUDIT_LOG',
       component: CNavGroup,
       name: t('sidebar.items.monitoring.head'),
       icon: <i className='cil-monitor'></i>,
@@ -65,14 +65,21 @@ const nav = (t: any): NavItem[] => {
       items: [],
     },
     {
-      key: 'workflowDesigner',
+      key: 'WORKFLOW_DESIGNER',
       component: CNavItem,
       name: t('sidebar.items.workflowDesigner'),
       icon: <i className='cil-chart-show'></i>,
       to: String(process.env.WORK_FLOW_DESIGNER_URL),
     },
     {
-      key: 'SSO',
+      key: 'REPORT_GENERATOR',
+      component: CNavItem,
+      name: t('sidebar.items.report_generator'),
+      icon: <i className='cil-report'></i>,
+      to: String(process.env.REPORT_GENERATOR),
+    },
+    {
+      key: 'SSO_ADMIN',
       component: CNavGroup,
       name: t('sidebar.items.sso.head'),
       icon: <i className='cil-shield'></i>,

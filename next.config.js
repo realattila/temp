@@ -23,6 +23,8 @@ module.exports = {
     API_BASE_URL_MONITORING_SERVICE: process.env.API_BASE_URL_MONITORING_SERVICE,
     WORK_FLOW_DESIGNER_URL: process.env.WORK_FLOW_DESIGNER_URL,
     SSO_ADMIN_ROLE_NAME: process.env.SSO_ADMIN_ROLE_NAME,
+    REPORT_GENERATOR: process.env.REPORT_GENERATOR,
+    ROLES: process.env.ROLES,
   },
   webpack(config, options) {
     config.resolve.alias = {
