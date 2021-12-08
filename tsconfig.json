@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "checkJs": false,
     "skipLibCheck": true,
@@ -16,18 +20,45 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "components/*": ["components/*"],
-      "utility/*": ["src/utility/*"],
-      "services/*": ["src/services/*"],
-      "types/*": ["src/types/*"],
-      "hooks/*": ["src/hooks/*"],
-      "store/*": ["src/store/*"],
-      "hoc/*": ["src/hoc/*"],
-      "styles/*": ["styles/*"],
-      "images/*": ["public/images/*"],
-      "public/*": ["public/*"]
-    }
+      "components/*": [
+        "components/*"
+      ],
+      "utility/*": [
+        "src/utility/*"
+      ],
+      "services/*": [
+        "src/services/*"
+      ],
+      "types/*": [
+        "src/types/*"
+      ],
+      "hooks/*": [
+        "src/hooks/*"
+      ],
+      "store/*": [
+        "src/store/*"
+      ],
+      "hoc/*": [
+        "src/hoc/*"
+      ],
+      "styles/*": [
+        "styles/*"
+      ],
+      "images/*": [
+        "public/images/*"
+      ],
+      "public/*": [
+        "public/*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
