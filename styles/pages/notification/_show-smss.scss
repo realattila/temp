@@ -1,8 +1,11 @@
 .show-smss {
   &__filter {
     &__wapper {
-      position: sticky;
-      top: 60px;
+      @include res(xl) {
+        position: sticky;
+
+        top: 60px;
+      }
     }
   }
 }
